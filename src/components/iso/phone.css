@@ -1,0 +1,27 @@
+.nd-phone-figure { width:100%; max-width:440px; margin:0; color:#252930; }
+.nd-phone-stage { position:relative; width:100%; aspect-ratio:44/70; --nd-scale:.75; }
+.nd-phone-canvas { position:absolute; width:440px; height:700px; transform:scale(var(--nd-scale)); transform-origin:0 0; }
+.nd-phone-svg,.nd-display-layer { position:absolute; inset:0; width:440px; height:700px; overflow:visible; pointer-events:none; }
+.nd-solid { --surface:#626b76; --base:#343c47; --edge:#a3adb9; }
+.nd-solid--dark { --surface:#333c49; --base:#202630; --edge:#6d7785; }
+.nd-solid--black { --surface:#090d13; --base:#05070b; --edge:#414a57; }
+.nd-solid--bright { --surface:#bdc6d0; --base:#697685; --edge:#e1e7ee; }
+.nd-solid-fill { fill:var(--base); }
+.nd-solid-top { fill:var(--surface); }
+.nd-shade { fill:var(--surface); }
+.nd-shade-0 { filter:brightness(.55); }.nd-shade-1 { filter:brightness(.75); }.nd-shade-2 { filter:brightness(.95); }.nd-shade-3 { filter:brightness(1.18); }
+.nd-edge,.nd-bevel { fill:none; stroke:var(--edge); stroke-width:.45; stroke-linejoin:round; }
+.nd-bevel { opacity:.65; }
+.nd-screen-plane { position:absolute; left:0; top:0; width:393px; height:852px; transform-origin:0 0; overflow:hidden; border-radius:49px; background:#171719; isolation:isolate; box-shadow:inset 0 0 0 1px #ffffff38; }
+.nd-screen-site { position:absolute; inset:48px 0 20px; overflow:hidden; }
+.nd-mobile-preview { display:block; border:0; width:393px; height:784px; pointer-events:none; }
+.nd-screen-status { position:absolute; top:15px; left:30px; right:28px; display:flex; justify-content:space-between; color:#fff; font:600 14px/1 system-ui; }
+.nd-island { position:absolute; width:108px; height:30px; border-radius:20px; top:9px; left:142px; background:#010204; box-shadow:0 0 0 1px #242932; }
+.nd-island i { position:absolute; width:12px; height:12px; right:9px; top:9px; border:2px solid #202d40; border-radius:50%; background:radial-gradient(circle at 35% 30%,#4c6a84,#101820 55%); }
+.nd-island b { position:absolute; width:3px; height:3px; right:13px; top:12px; border-radius:50%; background:#7c91ad; opacity:.6; }
+.nd-screen-earpiece { position:absolute; top:3px; left:173px; width:46px; height:2px; border-radius:2px; background:repeating-linear-gradient(90deg,#3d454d 0 1px,#10151b 1px 3px); }
+.nd-home-bar { position:absolute; bottom:8px; left:134px; width:125px; height:4px; border-radius:4px; background:#fff; }
+.nd-glass-light { position:absolute; inset:0; pointer-events:none; border-radius:inherit; background:none; box-shadow:inset 0 0 0 1px #ffffff24; }
+:root[data-theme="dark"] .nd-phone-figure { color:#e2ddd7; }
+.iphone-showcase__visual { perspective:none; min-height:0; }
+@media(max-width:700px) { .nd-phone-figure { max-width:390px; }.iphone-showcase__visual { min-height:0; } }
