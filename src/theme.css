@@ -1,0 +1,136 @@
+/* Theme changes affect surfaces only; component transforms keep their own timing. */
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #171719;
+  --surface: #222225;
+  --surface-soft: #2a292d;
+  --ink: #f0eeeb;
+  --muted: #bcb6af;
+  --red: #ff958b;
+  --action-red: #bb3c34;
+  --peach: #302522;
+  --peach-deep: #3b2d27;
+  --green: #a1ceab;
+  --gold: #e3bb79;
+  --line: #444044;
+  --focus: #d2c8bf;
+  background: var(--page);
+  color: var(--ink);
+}
+.theme-glyph { position: relative; display: block; width: 27px; height: 27px; }
+.dock-face .theme-glyph svg {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  stroke: currentColor; stroke-width: 1.8; fill: none;
+  stroke-linecap: round; stroke-linejoin: round;
+  transition: transform .4s cubic-bezier(.2,.8,.2,1), opacity .25s;
+}
+.theme-glyph__sun { color: #a66710; opacity: 1; transform: rotate(0) scale(1); }
+.theme-glyph__moon { color: #c5c1ff; opacity: 0; transform: rotate(-65deg) scale(.4); }
+:root[data-theme="dark"] .theme-glyph__sun { opacity: 0; transform: rotate(80deg) scale(.4); }
+:root[data-theme="dark"] .theme-glyph__moon { opacity: 1; transform: rotate(0) scale(1); }
+:root[data-theme="dark"] ::selection { background: #81433e; color: #fff; }
+:root[data-theme="dark"] :is(button, a, select):focus-visible { outline-color: var(--focus); }
+:root[data-theme="dark"] .site-header { background: transparent; }
+:root[data-theme="dark"] :is(.dock-panel, .dock-context-menu, .dock-submenu) {
+  --dock-panel: #242427f0;
+  --dock-panel-edge: #ffffff20;
+  --dock-panel-highlight: #ffffff14;
+  --dock-panel-shadow: 0 12px 30px -14px #0009;
+  --dock-tile: linear-gradient(180deg,#38363b,#2c2b30);
+  --dock-tile-edge: #ffffff15;
+  --dock-tile-highlight: #ffffff12;
+  --dock-tile-shadow: 0 4px 12px #0004;
+  --dock-ink: #e6e0da;
+  --dock-label: #363238;
+  --dock-label-ink: #f5efea;
+  --dock-dot: #ff958b;
+  --dock-separator: #ffffff26;
+  --dock-menu: #28272bf5;
+  --dock-menu-edge: #ffffff26;
+  --dock-menu-ink: #f0eeeb;
+  --dock-menu-muted: #bcb6af;
+  --dock-menu-separator: #ffffff26;
+  --dock-menu-shadow: 0 15px 35px #0006;
+}
+:root[data-theme="dark"] .dock-item:is(:hover,:focus-visible,.is-active) .dock-face { background: linear-gradient(180deg,#493330,#362a2a); color: var(--red); }
+:root[data-theme="dark"] .dock-search-panel { background: var(--surface); border-color: var(--line); }
+:root[data-theme="dark"] :is(.dock-menu-row:hover, .dock-menu-row:focus-visible) { background: #493330; color: var(--ink); }
+:root[data-theme="dark"] :is(.food-card,.restaurant-card,.category,.sort-control,.coupon-code,.cart-row,.modal-card) { border-color: var(--line); }
+:root[data-theme="dark"] :is(.food-photo,.restaurant-photo) { background: var(--surface-soft); }
+:root[data-theme="dark"] :is(.food-card,.restaurant-card)::before { box-shadow: 0 10px 24px #0004; }
+:root[data-theme="dark"] :is(.price-row del,.coupon-code span,.coupon-code small,.social-proof,.back-link,.cart-summary p strong) { color: var(--muted); }
+:root[data-theme="dark"] :is(.free-delivery,.detail-open,.detail-tag) { background: #28372e; color: var(--green); }
+:root[data-theme="dark"] .badge { background: #423326; color: #f5cf96; }
+:root[data-theme="dark"] .restaurant-mark:not(.dark):not(.purple) { background: #3b3028; border-color: #665041; color: #f2bb8e; }
+:root[data-theme="dark"] .restaurant-mark.purple { background: #382d42; border-color: #675273; color: #d6b5eb; }
+:root[data-theme="dark"] .restaurant-meta { border-color: var(--line); }
+:root[data-theme="dark"] .restaurant-meta strong { color: var(--green); }
+:root[data-theme="dark"] :is(.add-button,.modal-close) { background: var(--surface-soft); color: var(--red); }
+:root[data-theme="dark"] .add-button:hover { background: var(--action-red); color: #fff; }
+:root[data-theme="dark"] :is(.button-primary,.auth-page__submit,.modal-submit) { background: var(--action-red); color: #fff; }
+:root[data-theme="dark"] :is(.button-primary,.auth-page__submit,.modal-submit):hover { background: #a9322c; }
+:root[data-theme="dark"] .free-delivery-banner { background: var(--peach); }
+:root[data-theme="dark"] :is(.glass-icons-arrow,.famous-carousel-arrow) { background: var(--surface); border-color: var(--line); color: var(--ink); }
+:root[data-theme="dark"] :is(.glass-icons-arrow,.famous-carousel-arrow):hover:not(:disabled) { background: var(--action-red); color: #fff; }
+:root[data-theme="dark"] .famous-stack__card { border-color: #ffffff26; box-shadow: 0 18px 40px #0005; }
+:root[data-theme="dark"] .pill-nav__bar { background: var(--surface-soft); }
+:root[data-theme="dark"] .pill-nav__item { background: var(--surface); border-color: var(--line); color: var(--ink); }
+:root[data-theme="dark"] .pill-nav__slot[data-active] .pill-nav__item { color: var(--ink); }
+:root[data-theme="dark"] .pill-nav__slot[data-hover] .pill-nav__item { color: #fff; }
+:root[data-theme="dark"] :is(.filter-pill.selected,.filter-pill:hover) { background: var(--action-red); color: #fff; }
+/* The transparent WebGL canvas lets the same palette serve both burger renderers. */
+:root[data-theme="dark"] .burger-story .burger-scene { background: #2b2523; }
+:root[data-theme="dark"] .burger-scene-kicker { background: #252326d9; border-color: #ffffff29; color: #d1c5b9; }
+:root[data-theme="dark"] :is(.burger-scene-cue,.burger-scene-counter) { color: #e1d3c7; }
+:root[data-theme="dark"] .burger-scene-counter b { color: #b3a59b; }
+:root[data-theme="dark"] .burger-scroll-glyph { border-color: #b3a59b; }
+:root[data-theme="dark"] .burger-scene-progress { background: #56433a; }
+/* Globe, country controls, international and Brazilian reviews. */
+:root[data-theme="dark"] :is(.reviews-map,.reviews-world,.reviews-world--globe,.reviews-globe-stage,.reviews-world__globe) { background: var(--page); border-color: var(--line); box-shadow: none; }
+:root[data-theme="dark"] .reviews-globe-stage { background: radial-gradient(ellipse at 50% 46%,#302b2a,var(--page) 75%); }
+:root[data-theme="dark"] .reviews-topography::after { background: linear-gradient(0deg,#171719b3,transparent 30% 70%,#171719b3); }
+:root[data-theme="dark"] :is(.review-bubble,.review-feature,.review-country,.reviews-world--globe .review-country,.brazil-review-card,.reviews-map-legend) { background: var(--surface); border-color: var(--line); color: var(--ink); box-shadow: 0 8px 24px #0003; }
+:root[data-theme="dark"] .review-bubble::before { background: var(--surface); }
+:root[data-theme="dark"] :is(.review-country.is-active,.reviews-world--globe .review-country.is-active,.review-bubble.is-active) { background: #382b2b; border-color: #ba766c; }
+:root[data-theme="dark"] :is(.review-bubble__country,.review-person strong,.review-feature blockquote,.review-feature__author strong,.brazil-reviews__heading h2,.brazil-review-card__person strong) { color: var(--ink); }
+:root[data-theme="dark"] :is(.review-bubble p,.review-bubble__quote,.review-bubble__author,.review-person small,.review-demo,.reviews-map-caption,.review-live,.review-feature__locale,.review-feature__author small,.review-disclaimer,.review-country small,.reviews-note,.brazil-reviews__heading p,.brazil-reviews__count,.brazil-review-card__person small,.brazil-review-card blockquote,.brazil-review-card__demo) { color: var(--muted); }
+:root[data-theme="dark"] :is(.review-bubble__stars,.review-stars,.review-feature__rating,.review-feature__author>b,.brazil-review-card__rating) { color: var(--gold); }
+:root[data-theme="dark"] :is(.review-avatar,.review-feature__avatar,.brazil-review-card__avatar) { background: #49302e; color: var(--red); }
+:root[data-theme="dark"] .brazil-reviews__eyebrow { color: var(--red); }
+:root[data-theme="dark"] .brazil-reviews__count { border-color: var(--line); }
+/* Login, registration, validation feedback and browser autofill. */
+:root[data-theme="dark"] :is(.auth-page__layout,.auth-page__content) { background: var(--surface); border-color: var(--line); }
+:root[data-theme="dark"] :is(.auth-page__content h2,.auth-page__field) { color: var(--ink); }
+:root[data-theme="dark"] :is(.auth-page__back,.auth-page__intro,.auth-page__eyebrow--light,.auth-page__field>small,.auth-page__terms,.auth-page__terms a,.auth-page__switch-copy,.auth-page__input-icon) { color: var(--muted); }
+:root[data-theme="dark"] :is(.auth-page__field input,.auth-page__password-rules,.auth-page__switch) { background: var(--page); color: var(--ink); border-color: var(--line); }
+:root[data-theme="dark"] .auth-page__field input::placeholder { color: #a79f98; }
+:root[data-theme="dark"] input:autofill { box-shadow: 0 0 0 1000px var(--surface-soft) inset; -webkit-text-fill-color: var(--ink); }
+:root[data-theme="dark"] :is(.auth-page__password-rules p,.auth-page__password-rules li,.auth-page__switch button) { color: var(--muted); }
+:root[data-theme="dark"] .auth-page__switch button.is-active { background: var(--surface-soft); color: var(--ink); }
+:root[data-theme="dark"] .auth-page__password-rules li>span { background: var(--surface-soft); color: var(--muted); }
+:root[data-theme="dark"] .auth-page__password-rules li.is-met { color: var(--green); }
+:root[data-theme="dark"] .auth-page__password-rules li.is-met>span { background: #28372e; color: var(--green); }
+:root[data-theme="dark"] .auth-page__feedback { background: #402a2b; border-color: #8e514c; color: #ffc0b6; }
+:root[data-theme="dark"] .auth-page__password-toggle { color: var(--red); }
+:root[data-theme="dark"] .auth-page__password-toggle:hover { background: #49302e; }
+/* Keep the added action accessible when the toolbar no longer fits in one row. */
+@media (min-width:821px) and (max-width:1100px) {
+  .dock-component { justify-content: flex-start; overflow-x: auto; padding-block: 12px; scrollbar-width: none; }
+  .dock-panel { flex-shrink: 0; max-width: none; }
+}
+@media (max-width:820px) { .theme-glyph { width:24px; height:24px; } }
+@media (max-width:480px) { .theme-glyph { width:22px; height:22px; } }
+@media (prefers-reduced-motion:reduce) { .dock-face .theme-glyph svg { transition: none; } }
+
+:root[data-theme="dark"] .route-offer-note { color: var(--ink); }
+:root[data-theme="dark"] :is(.quantity-control button,.bike-icon) { background: var(--surface-soft); color: var(--red); }
+:root[data-theme="dark"] .cart-summary p { border-color: var(--line); }
+:root[data-theme="dark"] .auth-page__brand-icon { background: var(--action-red); }
+:root[data-theme="dark"] :is(.globe-caption,.globe-figure-caption,.globe-caption-kicker,.globe-route-caption,.globe-loading,.globe-error) { color: var(--muted); }
+:root[data-theme="dark"] .globe-error { background: var(--surface); }
+:root[data-theme="dark"] .globe-marker { background: #46332f; color: #ffc0ac; }
+:root[data-theme="dark"] .globe-marker.is-active { background: var(--action-red); color: #fff; }
+:root[data-theme="dark"] .dock-badge { border-color: var(--surface); }
+
+:root[data-theme="dark"] .dock-item:focus-visible .dock-face { outline-color: var(--focus); }
