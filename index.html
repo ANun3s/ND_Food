@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#fffdfa" />
+    <meta name="description" content="Peça seu prato favorito na ND Food. Bons sabores, bons momentos e entrega na sua porta." />
+    <title>ND Food — Seu próximo sabor favorito</title>
+    <script>
+      // Apply before first paint, including the built site served by Go Live.
+      (() => {
+        let theme;
+        try { theme = localStorage.getItem('nuvora-theme'); } catch {}
+        if (theme !== 'light' && theme !== 'dark') theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.style.colorScheme = theme;
+        document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#171719' : '#fffdfa';
+      })();
+    </script>
+    <script type="importmap">{"imports":{"three":"./node_modules/three/build/three.module.js"}}</script>
+    <script type="module">
+      if (!import.meta.env) {
+        window.location.replace(new URL(`./dist/index.html${window.location.hash}`, window.location.href));
+      }
+    </script>
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    <link rel="stylesheet" href="styles.css?v=5" />
+    <link rel="stylesheet" href="src/components/Dock.css" />
+    <link rel="stylesheet" href="src/components/PizzaKitchen.css" />
+    <link rel="stylesheet" href="src/components/AuthPage.css" />
+    <link rel="stylesheet" href="src/components/GlassIcons.css?v=7" />
+    <link rel="stylesheet" href="src/components/PillNav.css?v=5" />
+    <link rel="stylesheet" href="src/components/Topography.css?v=1" />
+    <link rel="stylesheet" href="src/components/BurgerScrollScene.css?v=1" />
+    <link rel="stylesheet" href="src/components/AppleIPhone17ProMax.css" />
+    <link rel="stylesheet" href="src/theme.css" />
+    <link rel="stylesheet" href="src/components/SignatureFooter.css" />
+    <link rel="stylesheet" href="src/components/SupportChat.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#inicio">Pular para o conteúdo</a>
+    <header class="site-header">
+      <div class="dock-header wrap" id="dock-root">
+        <div class="dock-component">
+          <nav class="dock-panel dock-panel--top" style="--dock-base:62px;--dock-thickness:88px;--dock-max:84px" aria-label="Navegação e ações da ND Food">
+            <a class="dock-item is-active" href="#/" data-dock-item data-context-menu="navigation" aria-current="page" aria-label="Início" title="Início">
+              <span class="dock-face" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z" /></svg></span><span class="dock-label">Início</span>
+            </a>
+            <a class="dock-item" href="#/restaurantes" data-dock-item aria-label="Restaurantes" title="Restaurantes">
+              <span class="dock-face" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6M8 10h.01M12 10h.01M16 10h.01" /></svg></span><span class="dock-label">Restaurantes</span>
+            </a>
+            <a class="dock-item" href="#/ofertas" data-dock-item aria-label="Ofertas" title="Ofertas">
+              <span class="dock-face" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.6 13.4 13 21l-10-10V3h8zM7.5 7.5h.01" /></svg></span><span class="dock-label">Ofertas</span>
+            </a>
+            <a class="dock-item" href="#/pedidos" data-dock-item aria-label="Meus pedidos" title="Meus pedidos">
+              <span class="dock-face" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3h12a2 2 0 0 1 2 2v16l-4-2-4 2-4-2-4 2V5a2 2 0 0 1 2-2ZM8 8h8M8 12h8M8 16h4" /></svg></span><span class="dock-label">Meus pedidos</span>
+            </a>
+            <a class="dock-item" href="#/avaliacoes" data-dock-item aria-label="Avaliações" title="Avaliações">
+              <span class="dock-face" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9L12 3Z" /></svg></span><span class="dock-label">Avaliações</span>
+            </a>
+            <span class="dock-separator" aria-hidden="true"></span>
+            <button class="dock-item theme-toggle" type="button" data-dock-item data-theme-toggle aria-label="Tema escuro" aria-pressed="false" title="Ativar tema escuro">
+              <span class="dock-face" aria-hidden="true"><span class="theme-glyph"><svg class="theme-glyph__sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg><svg class="theme-glyph__moon" viewBox="0 0 24 24"><path d="M20.5 14.2A8.7 8.7 0 0 1 9.8 3.5a8.7 8.7 0 1 0 10.7 10.7Z"/></svg></span></span><span class="dock-label">Alternar tema</span>
+            </button>
+            <a class="dock-item dock-search-toggle" href="#/restaurantes" data-dock-item aria-label="Buscar" title="Buscar">
+              <span class="dock-face" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8" /><path d="m16 16 4.5 4.5" /></svg></span><span class="dock-label">Buscar</span>
+            </a>
+            <a class="dock-item location-button" href="#/restaurantes" data-dock-item aria-label="Endereço de entrega" title="Endereço">
+              <span class="dock-face" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" /><circle cx="12" cy="10" r="2.5" /></svg></span><span class="dock-label">Endereço</span>
+            </a>
+            <a class="dock-item login-button" href="#/entrar" data-dock-item aria-label="Entrar" title="Entrar">
+              <span class="dock-face" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" /><path d="M4 21a8 8 0 0 1 16 0" /></svg></span><span class="dock-label">Entrar</span>
+            </a>
+            <span class="dock-separator" aria-hidden="true"></span>
+            <a class="dock-item cart-button" href="#/sacola" data-dock-item aria-label="Sacola, 0 itens" title="Sacola">
+              <span class="dock-face" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 8h14l1 13H4L5 8ZM9 8V6a3 3 0 0 1 6 0v2" /></svg></span><b class="dock-badge" id="cart-count">0</b><span class="dock-label">Sacola</span>
+            </a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main class="wrap page" id="inicio" tabindex="-1">
+      <section class="burger-story burger-story--static" data-burger-story aria-labelledby="hero-title">
+      <div class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow"><i></i> BOA COMIDA. BONS MOMENTOS.</p>
+          <h1 id="hero-title">Seu próximo sabor<br />favorito <em>está aqui.</em></h1>
+          <p class="hero-description">Dos seus clássicos preferidos às novas descobertas.<br />Peça, relaxe e deixe o resto com a gente.</p>
+          <a class="button button-primary" href="#queridinhos">Peça agora <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="hero-image burger-scene burger-webgl-fallback" id="burger-scene-root">
+          <svg class="burger-scene-fallback" viewBox="0 0 420 420" role="img" aria-label="Hambúrguer artesanal com pão, alface, tomate, queijo e carne">
+            <defs>
+              <linearGradient id="home-bun" x1="0" x2=".8" y1="0" y2="1"><stop stop-color="#f4c474"/><stop offset="1" stop-color="#cf762c"/></linearGradient>
+              <linearGradient id="home-beef" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#75452d"/><stop offset="1" stop-color="#3f2418"/></linearGradient>
+            </defs>
+            <ellipse class="burger-ground-shadow" cx="210" cy="350" rx="132" ry="18" fill="#7f4b2b" opacity=".14"/>
+            <g data-burger-layer="bottom"><path d="M77 323Q87 304 119 301h183q33 3 42 22l-7 32H84z" fill="url(#home-bun)"/><path d="M84 324q123-21 259 0l-7 31H84z" fill="#b96528" opacity=".33"/><path d="M110 315q78-10 181 1" fill="none" stroke="#ffe1a1" stroke-width="4" opacity=".55" stroke-linecap="round"/></g>
+            <g data-burger-layer="patty" data-burger-delay=".1"><path d="M90 195q15-19 39-20h160q31 3 42 22l-8 35q-18 14-34 3t-34 0t-34 0t-34 0t-34 0t-34 0t-28-5z" fill="url(#home-beef)"/><path d="M96 204q96-17 215 0M100 220q107-14 222 0" fill="none" stroke="#a66a43" stroke-width="2" opacity=".5" stroke-linecap="round"/><g fill="#321c14" opacity=".72"><circle cx="132" cy="195" r="3"/><circle cx="161" cy="216" r="2.6"/><circle cx="195" cy="190" r="2.7"/><circle cx="230" cy="215" r="3"/><circle cx="267" cy="193" r="2.8"/><circle cx="300" cy="214" r="2.5"/><circle cx="321" cy="197" r="2"/><circle cx="122" cy="222" r="2"/></g></g>
+            <g data-burger-layer="cheese"><path d="m95 229 228 0-3 33-32-8-13 24-29-20-67 4-27 20-18-24-37 9z" fill="#f3ad31"/><path d="m99 231 219 0" stroke="#ffe183" stroke-width="3" opacity=".8"/></g>
+            <g data-burger-layer="tomato" data-burger-delay=".18"><path d="M92 261q116-14 235 0l-7 20H97z" fill="#d84737"/><path d="M100 264q111-11 216 0" fill="none" stroke="#ff9a73" stroke-width="3" opacity=".75"/><g fill="#ffd0a2"><ellipse cx="150" cy="270" rx="3" ry="1.4"/><ellipse cx="175" cy="266" rx="3" ry="1.4"/><ellipse cx="204" cy="270" rx="3" ry="1.4"/><ellipse cx="230" cy="266" rx="3" ry="1.4"/><ellipse cx="260" cy="270" rx="3" ry="1.4"/><ellipse cx="286" cy="266" rx="3" ry="1.4"/></g></g>
+            <g data-burger-layer="lettuce" data-burger-delay=".24"><path d="M73 281q28-16 56 0t56 0t56 0t56 0t56 0l-11 23q-29 16-58 0t-58 0t-58 0t-58 0t-29 0z" fill="#4e8738"/><path d="M74 282q28-15 56 0t56 0t56 0t56 0t56 0" fill="none" stroke="#aad76b" stroke-width="4" stroke-linecap="round"/><path d="M92 294q25-12 50 0t52 0t53 0t53 0t52 0" fill="none" stroke="#83b954" stroke-width="3" opacity=".9"/></g>
+            <g data-burger-layer="upper" data-burger-delay=".12"><path d="M79 167q16-20 42-23 84-11 177 0 31 4 44 24l-8 19H88z" fill="#b86429"/><path d="M81 168q7-57 54-75 78-31 150 0 45 21 54 75-16 15-31 0t-32 0t-32 0t-32 0t-32 0t-32 0t-32 0t-32 0t-35 0z" fill="url(#home-bun)"/><path d="M110 132q15-36 50-48M260 85q32 8 51 37" fill="none" stroke="#ffdda0" stroke-width="5" opacity=".65" stroke-linecap="round"/><g fill="#fff0cc"><ellipse cx="145" cy="117" rx="7" ry="3.5" transform="rotate(-22 145 117)"/><ellipse cx="180" cy="99" rx="7" ry="3.5" transform="rotate(-22 180 99)"/><ellipse cx="214" cy="110" rx="7" ry="3.5" transform="rotate(-22 214 110)"/><ellipse cx="250" cy="95" rx="7" ry="3.5" transform="rotate(-22 250 95)"/><ellipse cx="283" cy="115" rx="7" ry="3.5" transform="rotate(-22 283 115)"/><ellipse cx="322" cy="135" rx="7" ry="3.5" transform="rotate(-22 322 135)"/><ellipse cx="115" cy="143" rx="7" ry="3.5" transform="rotate(-22 115 143)"/><ellipse cx="225" cy="137" rx="7" ry="3.5" transform="rotate(-22 225 137)"/><ellipse cx="274" cy="144" rx="7" ry="3.5" transform="rotate(-22 274 144)"/><ellipse cx="171" cy="130" rx="6" ry="3" transform="rotate(18 171 130)"/><ellipse cx="245" cy="128" rx="6" ry="3" transform="rotate(18 245 128)"/><ellipse cx="300" cy="96" rx="6" ry="3" transform="rotate(18 300 96)"/></g></g>
+          </svg>
+          <div class="burger-scene-kicker" aria-hidden="true"><span></span> UM CLÁSSICO, CAMADA POR CAMADA</div>
+          <div class="burger-scene-cue" aria-hidden="true"><span class="burger-scroll-glyph"><i></i></span><span>Role para montar</span><span class="burger-scene-counter"><span data-burger-step>01</span> <b>/ 06</b></span></div>
+          <div class="burger-scene-progress" aria-hidden="true"><span data-burger-progress></span></div>
+          <p class="visually-hidden" aria-live="polite" data-burger-status></p>
+        </div>
+      </div>
+      </section>
+
+      <section class="iphone-showcase" aria-labelledby="iphone-showcase-title">
+        <div class="iphone-showcase__copy">
+          <p class="eyebrow"><i></i> SEU PEDIDO, DO SEU JEITO</p>
+          <h2 id="iphone-showcase-title">Seu sabor favorito.<br /><em>Em qualquer lugar.</em></h2>
+          <p>Descubra restaurantes, escolha seus pratos e acompanhe cada etapa do pedido direto do celular.</p>
+          <a class="button button-primary" href="#/restaurantes">Encontrar meu próximo prato <span aria-hidden="true">→</span></a>
+          <ul class="iphone-showcase__highlights" aria-label="Novidades do aplicativo ND Food">
+            <li><span aria-hidden="true">✦</span> Cardápios para todos os momentos</li>
+            <li><span aria-hidden="true">◷</span> Seus favoritos sempre por perto</li>
+            <li><span aria-hidden="true">↗</span> Acompanhe sua entrega</li>
+          </ul>
+        </div>
+        <div class="iphone-showcase__visual" id="iphone-showcase-root" aria-label="ND Food em um iPhone">
+          <div class="iphone-showcase__fallback" aria-hidden="true">ND Food · Mobile</div>
+        </div>
+        <span class="iphone-showcase__caption" aria-hidden="true"><i></i> ND FOOD NA PALMA DA SUA MÃO</span>
+      </section>
+
+      <section class="categories" id="ofertas" aria-labelledby="categories-title">
+        <div class="section-heading"><div><h2 id="categories-title">O que combina com a sua fome?</h2><p>Tem um sabor para cada momento.</p></div><a class="text-link" href="#queridinhos">Ver tudo <span>→</span></a></div>
+        <div id="glass-icons-root" class="glass-icons-slot" aria-label="Categorias para escolher o que comer"></div>
+        <script id="food-categories-data" type="application/json">[
+          {"label":"Hambúrgueres","color":"red","icon":"hamburger","image":"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=220&q=85"},
+          {"label":"Pizzas","color":"orange","icon":"pizza","image":"https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?auto=format&fit=crop&w=220&q=85"},
+          {"label":"Comida japonesa","color":"indigo","icon":"sushi","image":"https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=220&q=85"},
+          {"label":"Açaí","color":"purple","icon":"acai","image":"https://images.unsplash.com/photo-1590301157890-4810ed352733?auto=format&fit=crop&w=220&q=85"},
+          {"label":"Sobremesas","color":"pink","icon":"dessert","image":"https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=220&q=85"},
+          {"label":"Bebidas","color":"blue","icon":"drink","image":"https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=220&q=85"},
+          {"label":"Sanduíches","color":"orange","icon":"sandwich","image":"https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=220&q=85"},
+          {"label":"Massas","color":"red","icon":"pasta","image":"https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=220&q=85"},
+          {"label":"Saladas","color":"green","icon":"salad","image":"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=220&q=85"},
+          {"label":"Cafés","color":"graphite","icon":"coffee","image":"https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=220&q=85"},
+          {"label":"Frutos do mar","color":"indigo","icon":"seafood","image":"https://images.unsplash.com/photo-1559737558-2f5a35f4523b?auto=format&fit=crop&w=220&q=85"},
+          {"label":"Comida brasileira","color":"green","icon":"brazilian","image":"https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=220&q=85"},
+          {"label":"Mexicana","color":"orange","icon":"mexican","image":"https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?auto=format&fit=crop&w=220&q=85"},
+          {"label":"Árabe","color":"graphite","icon":"arabic","image":"https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=220&q=85"},
+          {"label":"Tailandesa","color":"green","icon":"thai","image":"https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=220&q=85"},
+          {"label":"Chinesa","color":"red","icon":"chinese","image":"https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=220&q=85"},
+          {"label":"Indiana","color":"orange","icon":"indian","image":"https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=220&q=85"},
+          {"label":"Coreana","color":"red","icon":"korean","image":"https://images.unsplash.com/photo-1498654896293-37aacf113fd9?auto=format&fit=crop&w=220&q=85"},
+          {"label":"Vegana","color":"green","icon":"vegan","image":"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=220&q=85"},
+          {"label":"Padarias","color":"graphite","icon":"bakery","image":"https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=220&q=85"}
+        ]</script>
+      </section>
+
+      <section class="coupon-banner" aria-label="Cupom de boas-vindas">
+        <div class="coupon-copy"><span class="sparkle">✦</span><div><p class="eyebrow">OFERTA DE BOAS-VINDAS</p><h2>Seu primeiro pedido tem presente.</h2><p>Ganhe R$ 10 de desconto em pedidos acima de R$ 39.</p></div></div>
+        <button class="coupon-code" type="button" data-copy="BEMVINDO10"><span>SEU CUPOM</span><strong>BEMVINDO10</strong><small>Copiar cupom <span>⧉</span></small></button>
+      </section>
+
+      <section class="food-section" id="queridinhos" aria-labelledby="food-title">
+        <div class="section-heading"><div><h2 id="food-title">Sabores para descobrir</h2><p>Feitos na hora pelos restaurantes favoritos da sua região.</p></div><a class="text-link" href="#/favoritos">Seus favoritos <span>→</span></a></div>
+        <div class="food-grid">
+          <article class="food-card" data-search="smash da casa the burger house hamburguer">
+            <div class="food-photo"><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=90" alt="Smash da casa" /><span class="badge">DA CASA</span><button class="favorite" aria-label="Favoritar Smash da casa" aria-pressed="false">♡</button></div>
+            <div class="food-info"><p class="restaurant-name">The Burger House</p><h3>Smash da casa</h3><p class="food-description">Smash duplo, cheddar e molho da casa.</p><div class="price-row"><div><del>R$ 36,90</del><strong>R$ 29,90</strong></div><button class="add-button" data-add="Smash da casa" data-product-key="product:burger:smash-da-casa" aria-label="Adicionar Smash da casa à sacola">+</button></div></div>
+          </article>
+          <article class="food-card" data-search="pizza margherita forneria da vila pizza">
+            <div class="food-photo"><img src="https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?auto=format&fit=crop&w=900&q=90" alt="Pizza Margherita" /><span class="badge">CLÁSSICA</span><button class="favorite" aria-label="Favoritar Pizza Margherita" aria-pressed="false">♡</button></div>
+            <div class="food-info"><p class="restaurant-name">Forneria da Vila</p><h3>Pizza Margherita</h3><p class="food-description">Mozzarella, tomate e manjericão.</p><div class="price-row"><div><del>R$ 59,90</del><strong>R$ 49,90</strong></div><button class="add-button" data-add="Pizza Margherita" data-product-key="product:forneria:pizza-margherita" aria-label="Adicionar Pizza Margherita à sacola">+</button></div></div>
+          </article>
+          <article class="food-card" data-search="combo sushi lovers yū sushi japonesa">
+            <div class="food-photo"><img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=900&q=90" alt="Combo Sushi Lovers" /><span class="badge">MAIS PEDIDO</span><button class="favorite" aria-label="Favoritar Combo Sushi Lovers" aria-pressed="false">♡</button></div>
+            <div class="food-info"><p class="restaurant-name">Yū Sushi</p><h3>Combo Sushi Lovers</h3><p class="food-description">20 peças de sushi e sashimi.</p><div class="price-row"><div><del>R$ 79,90</del><strong>R$ 64,90</strong></div><button class="add-button" data-add="Combo Sushi Lovers" data-product-key="product:sushi:combo-sushi-lovers" aria-label="Adicionar Combo Sushi Lovers à sacola">+</button></div></div>
+          </article>
+          <article class="food-card" data-search="açaí do seu jeito açaí e cia">
+            <div class="food-photo"><img src="https://images.unsplash.com/photo-1590301157890-4810ed352733?auto=format&fit=crop&w=900&q=90" alt="Açaí do seu jeito" /><span class="badge">MONTE DO SEU JEITO</span><button class="favorite" aria-label="Favoritar Açaí do seu jeito" aria-pressed="false">♡</button></div>
+            <div class="food-info"><p class="restaurant-name">Açaí &amp; Cia</p><h3>Açaí do seu jeito</h3><p class="food-description">Açaí, frutas e granola.</p><div class="price-row"><div><del>R$ 27,90</del><strong>R$ 22,90</strong></div><button class="add-button" data-add="Açaí do seu jeito" data-product-key="product:acai:acai-do-seu-jeito" aria-label="Adicionar Açaí do seu jeito à sacola">+</button></div></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="restaurant-section" id="restaurantes" aria-labelledby="restaurant-title">
+        <div class="section-heading"><div><h2 id="restaurant-title">Restaurantes para descobrir</h2><p>Os melhores sabores da sua região, em um só lugar.</p></div><a class="text-link" href="#/restaurantes">Ver todos <span>→</span></a></div>
+        <div class="restaurant-grid">
+          <article class="restaurant-card" data-restaurant="burger"><div class="restaurant-photo"><img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=900&q=85" alt="Pratos do The Burger House" /><button class="favorite" aria-label="Favoritar The Burger House" aria-pressed="false">♡</button></div><div class="restaurant-details"><div class="restaurant-mark">B</div><div class="restaurant-main"><h3>The Burger House</h3><p>Hambúrgueres</p></div></div><div class="restaurant-meta"><span>25–35 min</span><strong>Entrega grátis</strong></div></article>
+          <article class="restaurant-card" data-restaurant="forneria"><div class="restaurant-photo"><img src="https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?auto=format&fit=crop&w=900&q=85" alt="Pratos da Forneria da Vila" /><button class="favorite" aria-label="Favoritar Forneria da Vila" aria-pressed="false">♡</button></div><div class="restaurant-details"><div class="restaurant-mark">F</div><div class="restaurant-main"><h3>Forneria da Vila</h3><p>Pizzas</p></div></div><div class="restaurant-meta"><span>35–45 min</span><strong>Frete R$ 5,90</strong></div></article>
+          <article class="restaurant-card" data-restaurant="sushi"><div class="restaurant-photo"><img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=900&q=85" alt="Pratos do Yū Sushi" /><button class="favorite" aria-label="Favoritar Yū Sushi" aria-pressed="false">♡</button></div><div class="restaurant-details"><div class="restaurant-mark dark">Yū</div><div class="restaurant-main"><h3>Yū Sushi</h3><p>Japonesa</p></div></div><div class="restaurant-meta"><span>30–40 min</span><strong>Entrega grátis</strong></div></article>
+          <article class="restaurant-card" data-restaurant="acai"><div class="restaurant-photo"><img src="https://images.unsplash.com/photo-1590301157890-4810ed352733?auto=format&fit=crop&w=900&q=85" alt="Pratos do Açaí & Cia" /><button class="favorite" aria-label="Favoritar Açaí & Cia" aria-pressed="false">♡</button></div><div class="restaurant-details"><div class="restaurant-mark purple">a.</div><div class="restaurant-main"><h3>Açaí &amp; Cia</h3><p>Açaí</p></div></div><div class="restaurant-meta"><span>20–30 min</span><strong>Frete R$ 4,90</strong></div></article>
+          <article class="restaurant-card" data-restaurant="taco-libre"><div class="restaurant-photo"><img src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?auto=format&fit=crop&w=900&q=85" alt="Tacos do Taco Libre" /><button class="favorite" aria-label="Favoritar Taco Libre" aria-pressed="false">♡</button></div><div class="restaurant-details"><div class="restaurant-mark">TL</div><div class="restaurant-main"><h3>Taco Libre</h3><p>Mexicana</p></div></div><div class="restaurant-meta"><span>25–35 min</span><strong>Entrega grátis</strong></div></article>
+          <article class="restaurant-card" data-restaurant="cedro-zaatar"><div class="restaurant-photo"><img src="https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=900&q=85" alt="Pratos do Cedro &amp; Zaatar" /><button class="favorite" aria-label="Favoritar Cedro &amp; Zaatar" aria-pressed="false">♡</button></div><div class="restaurant-details"><div class="restaurant-mark">CZ</div><div class="restaurant-main"><h3>Cedro &amp; Zaatar</h3><p>Árabe</p></div></div><div class="restaurant-meta"><span>30–40 min</span><strong>Entrega grátis</strong></div></article>
+          <article class="restaurant-card" data-restaurant="bangkok-bowl"><div class="restaurant-photo"><img src="https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=900&q=85" alt="Pratos do Bangkok Bowl" /><button class="favorite" aria-label="Favoritar Bangkok Bowl" aria-pressed="false">♡</button></div><div class="restaurant-details"><div class="restaurant-mark">BB</div><div class="restaurant-main"><h3>Bangkok Bowl</h3><p>Tailandesa</p></div></div><div class="restaurant-meta"><span>35–45 min</span><strong>Frete R$ 5,90</strong></div></article>
+          <article class="restaurant-card" data-restaurant="verde-raiz"><div class="restaurant-photo"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=85" alt="Pratos do Verde Raiz" /><button class="favorite" aria-label="Favoritar Verde Raiz" aria-pressed="false">♡</button></div><div class="restaurant-details"><div class="restaurant-mark dark">VR</div><div class="restaurant-main"><h3>Verde Raiz</h3><p>Vegana</p></div></div><div class="restaurant-meta"><span>25–35 min</span><strong>Entrega grátis</strong></div></article>
+        </div>
+      </section>
+
+      <section id="cozinha" class="pizza-kitchen" data-pizza-kitchen aria-label="Da massa ao forno">
+        <noscript>Da massa ao forno: abrir a massa, espalhar o molho, adicionar os ingredientes, levar ao forno, assar e retirar a pizza pronta.</noscript>
+      </section>
+    </main>
+    <main id="route-screen" class="wrap page route-page" aria-live="polite" tabindex="-1" hidden></main>
+
+    <footer class="site-footer nuvora-footer" id="pedidos" aria-label="Rodapé ND Food">
+      <div class="wrap">
+        <div class="nuvora-footer__top">
+          <nav class="nuvora-footer__column" aria-label="Explore a ND Food">
+            <h2>Explore a ND Food</h2>
+            <a href="#/">Início</a>
+            <a href="#/restaurantes">Restaurantes</a>
+            <a href="#/ofertas">Ofertas</a>
+            <a href="#/avaliacoes">Avaliações</a>
+          </nav>
+          <nav class="nuvora-footer__column" aria-label="Seu momento">
+            <h2>Seu momento</h2>
+            <a href="#/pedidos">Meus pedidos</a>
+            <a href="#/sacola">Sua sacola</a>
+            <a href="#/favoritos">Seus favoritos</a>
+            <a href="#/entrar">Entrar ou criar conta</a>
+            <a href="mailto:oi@nuvorafood.com.br">Fale com a ND Food <span aria-hidden="true">↗</span></a>
+          </nav>
+          <div class="nuvora-footer__message">
+            <p>A fome chega.<br>A ND Food aproxima.</p>
+            <button class="nuvora-footer__top-link" type="button" data-footer-top>Voltar ao topo <span aria-hidden="true">↗</span></button>
+          </div>
+        </div>
+        <div class="nuvora-footer__divider" aria-hidden="true"><span></span></div>
+        <div class="nuvora-footer__meta">
+          <a class="nuvora-footer__logo" href="#/" aria-label="ND Food — página inicial">ND<span>Food.</span></a>
+          <p>© <span data-footer-year>2026</span> ND Food.<br><span>Feito para reunir sabores e bons momentos.</span></p>
+        </div>
+      </div>
+      <div class="nuvora-footer__wordmark" aria-hidden="true"><span>bom apetite.</span></div>
+    </footer>
+    <div class="auth-overlay" id="address-modal" hidden>
+      <section class="modal-card address-card" role="dialog" aria-modal="true" aria-labelledby="address-title">
+        <button class="modal-close" type="button" data-close-modal aria-label="Fechar">×</button>
+        <p class="eyebrow">ENDEREÇO DE ENTREGA</p><h2 id="address-title">Onde entregamos?</h2><p class="modal-intro">Informe seu endereço para consultar o prazo e escolher os restaurantes que chegam até você.</p>
+        <form id="address-form"><label>Rua e número<input type="text" name="address" autocomplete="street-address" aria-describedby="address-session-note" placeholder="Ex.: Rua das Flores, 120" required /></label><p class="address-session-note" id="address-session-note">Seu endereço será usado para estimar a entrega.</p><button class="button button-primary modal-submit" type="submit">Salvar endereço</button></form>
+      </section>
+    </div>
+    <div class="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="./src/site.js"></script>
+    <script type="module" src="./src/components/BurgerScrollStandalone.js?v=1"></script>
+  </body>
+</html>
