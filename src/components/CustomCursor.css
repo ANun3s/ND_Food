@@ -1,0 +1,34 @@
+.nuvora-hover-cursor {
+  position: fixed;
+  z-index: 60;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border: 1.5px solid color-mix(in srgb, var(--red, #c43b32) 70%, transparent);
+  background: color-mix(in srgb, var(--red, #c43b32) 4%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--red, #c43b32) 5%, transparent);
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(.94);
+  transition:
+    top 180ms cubic-bezier(.2, .8, .2, 1),
+    left 180ms cubic-bezier(.2, .8, .2, 1),
+    width 220ms cubic-bezier(.2, .8, .2, 1),
+    height 220ms cubic-bezier(.2, .8, .2, 1),
+    border-radius 180ms ease,
+    opacity 140ms ease,
+    transform 180ms ease;
+  will-change: top, left, width, height;
+}
+
+.nuvora-hover-cursor.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .nuvora-hover-cursor {
+    display: none;
+  }
+}

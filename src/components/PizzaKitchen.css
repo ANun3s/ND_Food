@@ -1,0 +1,68 @@
+.pizza-kitchen{--pk-ink:#000;--pk-paper:#fffdfa;--pk-rule:rgba(16,16,16,.2);--pk-muted:#67635e;max-width:1240px;margin:96px auto;padding:0 32px;color:var(--pk-ink)}
+:root[data-theme="dark"] .pizza-kitchen{--pk-ink:#fff;--pk-paper:#211e1b;--pk-rule:rgba(255,255,255,.25);--pk-muted:#bcb6b0}
+.pk-intro{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:30px}
+.pk-eyebrow{font-size:10px;font-weight:650;letter-spacing:.16em;margin:0 0 15px;color:var(--pk-muted)}
+.pk-intro h2{margin:0;font-size:clamp(30px,3.6vw,48px);letter-spacing:-.055em;font-weight:500;line-height:1.1}
+.pk-intro h2 em{font-weight:400;font-style:normal;color:var(--pk-muted)}
+.pk-intro>p{max-width:260px;margin:0;font-size:13px;line-height:1.7;color:var(--pk-muted)}
+.pk-frame{border:1px solid var(--pk-rule);background:var(--pk-paper);overflow:hidden;position:relative}
+.pk-frame-top{display:flex;justify-content:space-between;gap:12px;padding:22px 25px 0;font:10px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.1em;color:var(--pk-muted)}
+.pk-art{display:block;width:100%;height:auto;max-height:640px;overflow:visible}
+.pk-lines{stroke:var(--pk-ink);stroke-width:1.15;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.pk-paper{fill:var(--pk-paper)}
+.pk-secondary{stroke-width:.85}
+.pk-faint{opacity:.4;fill:none;stroke-width:.8}
+.pk-pizza-edge{stroke-width:1.5}
+.pk-baked{fill:var(--pk-ink);stroke:none}
+.pk-steam{stroke-width:1;fill:none}
+.pk-readout{display:flex;align-items:flex-start;gap:20px;margin:0 25px;padding:21px 0;border-top:1px solid var(--pk-rule);min-height:94px}
+.pk-readout>span:first-child{flex:none;padding-top:3px;font:11px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--pk-muted)}
+.pk-readout h3{font-size:17px;font-weight:500;letter-spacing:-.025em;line-height:1.4;margin:0 0 5px}
+.pk-readout p{font-size:12px;line-height:1.6;color:var(--pk-muted);margin:0}
+.pk-cycle{font:9px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.1em;white-space:nowrap;margin-left:auto;padding-top:4px;color:var(--pk-muted)}
+.pk-timeline{display:flex;align-items:center;gap:20px;padding:0 25px 22px}
+.pk-play{border:1px solid var(--pk-rule);border-radius:30px;min-height:40px;min-width:108px;background:transparent;color:var(--pk-ink);font:10px ui-monospace,SFMono-Regular,Consolas,monospace;text-transform:uppercase;letter-spacing:.08em;cursor:pointer}
+.pk-play::before{content:'Ⅱ';margin-right:8px;font-size:11px}
+.pizza-kitchen[data-playing="false"] .pk-play::before{content:'▷'}
+.pk-timeline input{min-width:0;flex:1;accent-color:var(--pk-ink);height:30px;cursor:ew-resize;background:transparent}
+.pk-loop{font:9px ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.08em;color:var(--pk-muted)}
+.pk-steps{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));margin-top:16px;gap:8px}
+.pk-steps button{background:transparent;color:var(--pk-muted);border:0;border-top:1px solid var(--pk-rule);border-radius:0;min-height:60px;padding:14px 0 8px;text-align:left;display:flex;gap:10px;align-items:center;font:12px 'DM Sans',sans-serif;cursor:pointer;transition:color .2s,border-color .2s}
+.pk-steps button span{font:10px ui-monospace,SFMono-Regular,Consolas,monospace;opacity:.65}
+.pk-steps button.is-active{border-color:var(--pk-ink);color:var(--pk-ink);font-weight:700}
+.pk-steps button:hover,.pk-play:hover{color:var(--pk-ink);background:color-mix(in srgb,var(--pk-ink) 4%,transparent)}
+.pizza-kitchen button:focus-visible{outline:2px solid var(--pk-ink);outline-offset:4px}
+.pk-sr{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+@media(max-width:700px){.pizza-kitchen{margin:64px auto;padding:0 18px}.pk-intro{display:block;margin-bottom:22px}.pk-intro>p{max-width:340px;margin-top:16px}.pk-intro h2{max-width:370px}.pk-frame-top{font-size:8px;padding:16px 14px 0;letter-spacing:.06em}.pk-art{width:125%;max-width:none;margin-left:-12.5%;margin-top:12px;margin-bottom:8px}.pk-readout{margin:0 14px;gap:12px;min-height:112px;padding:18px 0}.pk-readout h3{font-size:15px}.pk-readout p{font-size:11px}.pk-readout>span:first-child{font-size:9px}.pk-cycle{display:none}.pk-timeline{padding:0 14px 16px;gap:12px}.pk-play{min-width:91px;min-height:44px;font-size:9px}.pk-loop{display:none}.pk-steps{grid-template-columns:repeat(3,minmax(0,1fr));gap:4px 12px}.pk-steps button{font-size:11px;min-height:49px}.pk-eyebrow{font-size:8px;letter-spacing:.12em}}
+@media(prefers-reduced-motion:reduce){.pk-steps button{transition:none}}
+/* Physical surfaces share the same restrained monochrome material system. */
+.pizza-kitchen{--pk-front:#f6f4f0;--pk-side:#eeece8;--pk-inset:#e9e6e1}
+:root[data-theme="dark"] .pizza-kitchen{--pk-front:#292623;--pk-side:#322e2a;--pk-inset:#171513}
+.pk-face-front{fill:var(--pk-front)}.pk-face-side{fill:var(--pk-side)}.pk-face-inset{fill:var(--pk-inset)}
+.pk-fine{fill:none;stroke-width:.7;opacity:.7}.pk-paper.pk-fine{fill:var(--pk-paper)}
+.pk-dome-fill{fill:var(--pk-front);stroke:var(--pk-front);stroke-width:.6}.pk-dome-seam{fill:none;stroke-width:.75;opacity:.6}
+.pk-fire-ground{fill:#24170f;stroke:var(--pk-ink)}.pk-sauce{fill:var(--pk-inset);stroke-width:.8}
+.pk-art{max-height:720px}.pk-lines{stroke-width:1.1}
+@media(max-width:700px){.pk-art{width:100%;margin-left:0;margin-top:12px;margin-bottom:8px}.pk-frame{overflow:hidden}}
+.pk-crust-fill{fill:var(--pk-paper);fill-rule:evenodd;stroke:none}.pk-roller-fill{fill:var(--pk-paper);stroke:none}
+@media(max-width:700px){.pk-lines{stroke-width:1.5}.pk-fine,.pk-dome-seam{stroke-width:.9}}
+/* The recipe is the only colored object in the circuit; equipment stays neutral. */
+.pk-pizza-subject{--pk-bake:0%;--pk-dough:color-mix(in srgb,#ead7b2,#d49b57 var(--pk-bake))}
+.pk-pizza-subject .pk-paper,.pk-pizza-subject .pk-crust-fill{fill:var(--pk-dough)}
+.pk-pizza-subject .pk-face-front{fill:color-mix(in srgb,#dbc69f,#bc803e var(--pk-bake))}
+.pk-pizza-subject .pk-face-side{fill:#c7a16c}
+.pk-pizza-subject .pk-sauce{fill:#b94b38}
+.pk-pizza-subject .pk-pizza-cheese .pk-paper{fill:#f1e6bb}
+.pk-pizza-subject .pk-pizza-tomato .pk-paper{fill:#cf5f46}
+.pk-pizza-subject .pk-pizza-tomato .pk-face-front{fill:#aa4332}
+.pk-pizza-subject .pk-pizza-tomato .pk-baked{fill:#f1c58a}
+.pk-pizza-subject .pk-pizza-basil .pk-paper{fill:#718855}
+.pk-pizza-subject [data-pk="baked"] .pk-baked{fill:#805533}
+
+/* A real 3D scene with a complete SVG fallback occupies one stable responsive slot. */
+.pk-stage{position:relative;width:100%;aspect-ratio:1.1;max-height:760px;isolation:isolate}
+.pk-stage>.pk-art{width:100%;height:100%;max-height:none;margin:0}
+.pk-canvas{position:absolute;inset:0;display:block;width:100%;height:100%;pointer-events:none}
+.pk-stage:not(.has-3d)>.pk-canvas{visibility:hidden}
+.pk-stage.has-3d>.pk-art{visibility:hidden}
+@media(max-width:700px){.pk-stage{aspect-ratio:1;min-height:280px}.pk-stage>.pk-art{width:100%;margin:0}}

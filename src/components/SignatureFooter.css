@@ -1,0 +1,118 @@
+/* Composition adapted from elo's editorial footer, in Nuvora's warm palette. */
+.site-footer.nuvora-footer {
+  --footer-paper: #f3e4da;
+  --footer-ink: #732d25;
+  --footer-muted: #87594d;
+  --footer-line: #cba99a;
+  --footer-signature: #b34435;
+  background: var(--footer-paper);
+  color: var(--footer-ink);
+  padding: 80px 0 0;
+  overflow: hidden;
+  overflow: clip;
+}
+:root[data-theme="dark"] .site-footer.nuvora-footer {
+  --footer-paper: #301e1b;
+  --footer-ink: #f8e7db;
+  --footer-muted: #ccaea0;
+  --footer-line: #715047;
+  --footer-signature: #f09880;
+}
+.nuvora-footer__top {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.4fr;
+  gap: 48px;
+  padding: 16px 0 64px;
+}
+.nuvora-footer__column { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; min-width: 0; }
+.nuvora-footer__column h2 {
+  margin: 0 0 16px;
+  color: var(--footer-muted);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.nuvora-footer__column a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 8px 0;
+  color: var(--footer-ink);
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.5;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 5px;
+  transition: color 180ms ease, text-decoration-color 180ms ease;
+}
+.nuvora-footer__column a:hover { color: var(--footer-signature); text-decoration-color: currentColor; }
+.nuvora-footer__column a[aria-current="page"] { text-decoration-color: var(--footer-line); }
+.nuvora-footer__message { justify-self: end; max-width: 380px; padding-top: 2px; }
+.nuvora-footer__message p { margin: 0; font-size: clamp(27px, 3vw, 42px); font-weight: 500; letter-spacing: -.045em; line-height: 1.17; }
+.nuvora-footer__top-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 24px;
+  min-height: 44px;
+  margin: 24px 0 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--footer-muted);
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+.nuvora-footer__top-link span { font-size: 21px; }
+.nuvora-footer__top-link:hover { color: var(--footer-ink); }
+.nuvora-footer__divider { position: relative; height: 1px; background: var(--footer-line); }
+.nuvora-footer__divider span {
+  position: absolute; left: 50%; top: 50%; width: 7px; height: 7px;
+  background: var(--footer-signature); outline: 5px solid var(--footer-paper);
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.nuvora-footer__meta { display: flex; align-items: center; justify-content: space-between; gap: 32px; padding-top: 32px; }
+.nuvora-footer__logo { display: inline-flex; align-items: baseline; gap: 9px; min-height: 44px; color: var(--footer-ink); font-size: 35px; font-weight: 800; letter-spacing: -1.8px; line-height: 1.2; }
+.nuvora-footer__logo span { color: var(--footer-signature); font-size: 18px; font-weight: 650; letter-spacing: -.6px; }
+.nuvora-footer__meta p { margin: 0; text-align: right; color: var(--footer-muted); font-size: 13px; line-height: 1.7; }
+.nuvora-footer__meta p > span:last-child { font-size: 12px; }
+.nuvora-footer__wordmark { display: flex; justify-content: center; align-items: flex-start; height: 13vw; margin-top: 72px; overflow: hidden; user-select: none; pointer-events: none; }
+.nuvora-footer__wordmark > span {
+  display: block;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18vw;
+  font-weight: 700;
+  letter-spacing: -.075em;
+  line-height: .88;
+  white-space: nowrap;
+  padding-right: .075em;
+  color: var(--footer-signature);
+  transform: translate3d(0, var(--footer-shift, 0px), 0);
+}
+.site-footer.nuvora-footer :is(a, button):focus-visible { outline: 3px solid var(--footer-ink); outline-offset: 5px; border-radius: 4px; }
+@media (max-width: 800px) {
+  .site-footer.nuvora-footer { padding-top: 48px; }
+  .nuvora-footer__top { grid-template-columns: 1fr 1fr; gap: 36px 28px; padding-bottom: 44px; }
+  .nuvora-footer__message { grid-column: 1 / -1; justify-self: start; max-width: none; }
+  .nuvora-footer__message p { font-size: 32px; }
+  .nuvora-footer__wordmark { margin-top: 52px; }
+}
+@media (max-width: 480px) {
+  .nuvora-footer__column a { font-size: 14px; }
+  .nuvora-footer__column h2 { font-size: 10px; letter-spacing: .08em; margin-bottom: 12px; }
+  .nuvora-footer__top { gap: 32px 18px; }
+  .nuvora-footer__meta { align-items: flex-start; gap: 18px; padding-top: 26px; }
+  .nuvora-footer__meta p { font-size: 11px; max-width: 210px; }
+  .nuvora-footer__meta p > span:last-child { font-size: 10px; }
+  .nuvora-footer__logo { flex-wrap: wrap; gap: 0 5px; font-size: 27px; }
+  .nuvora-footer__logo span { font-size: 14px; }
+  .nuvora-footer__wordmark { margin-top: 44px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nuvora-footer__column a { transition: none; }
+  .nuvora-footer__wordmark > span { transform: none; }
+}
