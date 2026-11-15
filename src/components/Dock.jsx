@@ -156,6 +156,7 @@ export default function Dock({
   bounce = true,
 }) {
   const dockRef = useRef(null);
+  const [viewportWidth, setViewportWidth] = useState(() => window.innerWidth);
   const itemRefs = useRef([]);
   const searchRef = useRef(null);
   const motionRef = useRef(new Map());
@@ -188,6 +189,17 @@ export default function Dock({
   });
   const [menu, setMenu] = useState(null);
   const settingsRef = useRef(null);
+  const compactDock = viewportWidth <= 820;
+  const responsiveBaseItemSize = compactDock
+    ? (viewportWidth <= 560 ? 48 : 54)
+    : baseItemSize;
+  const responsiveMagnification = compactDock ? responsiveBaseItemSize : magnification;
+
+  useEffect(() => {
+    const updateViewportWidth = () => setViewportWidth(window.innerWidth);
+    window.addEventListener('resize', updateViewportWidth, { passive: true });
+    return () => window.removeEventListener('resize', updateViewportWidth);
+  }, []);
 
   const navigate = useCallback((href) => {
     window.location.hash = href.slice(1);
@@ -220,7 +232,16 @@ export default function Dock({
     { id: 'sacola', label: 'Sacola', icon: ShoppingBag03Icon, href: '#/sacola', badge: cartCount || undefined, className: 'cart-button', onClick: () => navigate('#/sacola') },
   ];
 
-  settingsRef.current = { items, baseItemSize, magnification, distance, spring, springEnabled, bounce, position };
+  settingsRef.current = {
+    items,
+    baseItemSize: responsiveBaseItemSize,
+    magnification: responsiveMagnification,
+    distance,
+    spring,
+    springEnabled,
+    bounce,
+    position,
+  };
 
   useEffect(() => {
     const onHashChange = () => setActive(readActiveRoute());
@@ -245,7 +266,7 @@ export default function Dock({
     if (searchOpen) searchRef.current?.focus();
   }, [searchOpen]);
 
-  useEffect(() => { wakeRef.current?.(); }, [springEnabled, magnification, baseItemSize, distance]);
+  useEffect(() => { wakeRef.current?.(); }, [springEnabled, responsiveMagnification, responsiveBaseItemSize, distance]);
 
   useEffect(() => {
     const root = dockRef.current;
@@ -379,7 +400,7 @@ export default function Dock({
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduce || !bounce) return;
     const state = motionRef.current.get(index) ?? {
-      size: baseItemSize, velocity: 0, lift: 0, rise: 0, launch: 0, gravity: 0, hopping: false,
+      size: responsiveBaseItemSize, velocity: 0, lift: 0, rise: 0, launch: 0, gravity: 0, hopping: false,
     };
     motionRef.current.set(index, state);
     const node = itemRefs.current[index];
@@ -466,8 +487,8 @@ export default function Dock({
   };
 
   const dockStyle = {
-    '--dock-base': `${baseItemSize}px`,
-    '--dock-peak': `${magnification}px`,
+    '--dock-base': `${responsiveBaseItemSize}px`,
+    '--dock-peak': `${responsiveMagnification}px`,
     '--dock-thickness': `${panelHeight}px`,
     '--dock-gap': '18px',
   };
