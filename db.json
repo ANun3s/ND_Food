@@ -1,0 +1,615 @@
+{
+  "produtos": [
+    {
+      "id": "PR-1001",
+      "nome": "Smash da casa",
+      "descricao": "Smash duplo, cheddar cremoso, cebola caramelizada e molho da casa.",
+      "categoria": "Hambúrgueres",
+      "preco": 29.9,
+      "estoque": 18,
+      "imagem": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=85",
+      "disponivel": true
+    },
+    {
+      "id": "PR-1002",
+      "nome": "Pizza Margherita",
+      "descricao": "Mozzarella, tomate italiano, manjericão fresco e azeite.",
+      "categoria": "Pizzas",
+      "preco": 49.9,
+      "estoque": 12,
+      "imagem": "https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?auto=format&fit=crop&w=900&q=85",
+      "disponivel": true
+    },
+    {
+      "id": "PR-1003",
+      "nome": "Combo Sushi Lovers",
+      "descricao": "Seleção de niguiris, uramakis e sashimis preparados na hora.",
+      "categoria": "Japonesa",
+      "preco": 64.9,
+      "estoque": 9,
+      "imagem": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=900&q=85",
+      "disponivel": true
+    },
+    {
+      "id": "PR-1004",
+      "nome": "Açaí do seu jeito",
+      "descricao": "Açaí batido com banana, granola e frutas da estação.",
+      "categoria": "Açaí",
+      "preco": 22.9,
+      "estoque": 24,
+      "imagem": "https://images.unsplash.com/photo-1590301157890-4810ed352733?auto=format&fit=crop&w=900&q=85",
+      "disponivel": true
+    },
+    {
+      "id": "PR-1005",
+      "nome": "Carbonara da casa",
+      "descricao": "Massa artesanal, queijo, gema e cubos crocantes de pancetta.",
+      "categoria": "Massas",
+      "preco": 42.9,
+      "estoque": 10,
+      "imagem": "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=900&q=85",
+      "disponivel": true
+    },
+    {
+      "id": "PR-1006",
+      "nome": "Salada crocante da horta",
+      "descricao": "Folhas frescas, tomate, pepino, cenoura e molho cítrico.",
+      "categoria": "Saladas",
+      "preco": 31.5,
+      "estoque": 7,
+      "imagem": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=85",
+      "disponivel": true
+    },
+    {
+      "id": "PR-1007",
+      "nome": "Batata rústica",
+      "descricao": "Batatas assadas com páprica, alecrim e maionese da casa.",
+      "categoria": "Acompanhamentos",
+      "preco": 14.9,
+      "estoque": 30,
+      "imagem": "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=900&q=85",
+      "disponivel": true
+    },
+    {
+      "id": "PR-1008",
+      "nome": "Brownie de chocolate",
+      "descricao": "Brownie de cacau com interior macio e gotas de chocolate.",
+      "categoria": "Sobremesas",
+      "preco": 18.5,
+      "estoque": 14,
+      "imagem": "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=900&q=85",
+      "disponivel": true
+    },
+    {
+      "id": "PR-1009",
+      "nome": "Limonada da casa",
+      "descricao": "Limão espremido na hora, água gelada e toque de hortelã.",
+      "categoria": "Bebidas",
+      "preco": 9.9,
+      "estoque": 40,
+      "imagem": "https://images.unsplash.com/photo-1513558161293-cdaf765edfd47?auto=format&fit=crop&w=900&q=85",
+      "disponivel": true
+    },
+    {
+      "id": "PR-1010",
+      "nome": "Wrap de frango grelhado",
+      "descricao": "Frango grelhado, folhas, tomate e molho leve no pão folha.",
+      "categoria": "Sanduíches",
+      "preco": 27.9,
+      "estoque": 0,
+      "imagem": "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=900&q=85",
+      "disponivel": false
+    },
+    {
+      "id": "PR-1011",
+      "nome": "Feijoada da Vila",
+      "descricao": "Feijão preto, carnes selecionadas, arroz, couve e farofa.",
+      "categoria": "Brasileira",
+      "preco": 39.9,
+      "estoque": 8,
+      "imagem": "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85",
+      "disponivel": true
+    },
+    {
+      "id": "PR-1012",
+      "nome": "Cheesecake de frutas vermelhas",
+      "descricao": "Cheesecake cremoso com calda de frutas vermelhas.",
+      "categoria": "Sobremesas",
+      "preco": 21.9,
+      "estoque": 6,
+      "imagem": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=85",
+      "disponivel": true
+    },
+    {
+      "id": "PR-1013",
+      "nome": "Bowl de frango teriyaki",
+      "descricao": "Frango ao molho teriyaki, arroz, legumes e gergelim.",
+      "categoria": "Japonesa",
+      "preco": 48.0,
+      "estoque": 5,
+      "imagem": "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85",
+      "disponivel": true
+    },
+    {
+      "id": "PR-1014",
+      "nome": "Milk-shake de baunilha",
+      "descricao": "Leite batido com sorvete de baunilha e cobertura da casa.",
+      "categoria": "Bebidas",
+      "preco": 16.9,
+      "estoque": 7,
+      "imagem": "https://images.unsplash.com/photo-1560008581-09826d1de69e?auto=format&fit=crop&w=900&q=85",
+      "disponivel": true
+    },
+    {
+      "id": "PR-1015",
+      "nome": "Focaccia caprese",
+      "descricao": "Focaccia de fermentação lenta com tomate, mozzarella e manjericão.",
+      "categoria": "Pães",
+      "preco": 24.5,
+      "estoque": 11,
+      "imagem": "https://images.unsplash.com/photo-1573140247632-f8fd74997d5c?auto=format&fit=crop&w=900&q=85",
+      "disponivel": true
+    }
+  ],
+  "pedidos": [
+    {
+      "id": "PED-3001",
+      "cliente": "Mariana Lopes",
+      "produtos": [
+        {
+          "produtoId": "PR-1001",
+          "quantidade": 2,
+          "precoUnitario": 29.9
+        },
+        {
+          "produtoId": "PR-1007",
+          "quantidade": 1,
+          "precoUnitario": 14.9
+        }
+      ],
+      "valorTotal": 74.7,
+      "enderecoId": "END-1001",
+      "entregaId": "DEL-2001",
+      "status": "Pendente",
+      "dataPedido": "2026-11-09T20:50:00-03:00"
+    },
+    {
+      "id": "PED-3002",
+      "cliente": "Pedro Almeida",
+      "produtos": [
+        {
+          "produtoId": "PR-1002",
+          "quantidade": 1,
+          "precoUnitario": 49.9
+        },
+        {
+          "produtoId": "PR-1009",
+          "quantidade": 2,
+          "precoUnitario": 9.9
+        }
+      ],
+      "valorTotal": 69.7,
+      "enderecoId": "END-1002",
+      "entregaId": "DEL-2002",
+      "status": "Confirmado",
+      "dataPedido": "2026-11-09T20:57:00-03:00"
+    },
+    {
+      "id": "PED-3003",
+      "cliente": "Lia Martins",
+      "produtos": [
+        {
+          "produtoId": "PR-1003",
+          "quantidade": 1,
+          "precoUnitario": 64.9
+        },
+        {
+          "produtoId": "PR-1008",
+          "quantidade": 1,
+          "precoUnitario": 18.5
+        }
+      ],
+      "valorTotal": 83.4,
+      "enderecoId": "END-1003",
+      "entregaId": "DEL-2003",
+      "status": "Em preparação",
+      "dataPedido": "2026-11-09T21:05:00-03:00"
+    },
+    {
+      "id": "PED-3004",
+      "cliente": "Caio Nogueira",
+      "produtos": [
+        {
+          "produtoId": "PR-1005",
+          "quantidade": 2,
+          "precoUnitario": 42.9
+        },
+        {
+          "produtoId": "PR-1007",
+          "quantidade": 1,
+          "precoUnitario": 14.9
+        }
+      ],
+      "valorTotal": 100.7,
+      "enderecoId": "END-1004",
+      "entregaId": "DEL-2004",
+      "status": "Enviado",
+      "dataPedido": "2026-11-09T20:41:00-03:00"
+    },
+    {
+      "id": "PED-3005",
+      "cliente": "Sofia Martins",
+      "produtos": [
+        {
+          "produtoId": "PR-1011",
+          "quantidade": 1,
+          "precoUnitario": 39.9
+        },
+        {
+          "produtoId": "PR-1012",
+          "quantidade": 1,
+          "precoUnitario": 21.9
+        }
+      ],
+      "valorTotal": 61.8,
+      "enderecoId": "END-1005",
+      "entregaId": "DEL-2005",
+      "status": "Entregue",
+      "dataPedido": "2026-11-08T17:42:00-03:00"
+    },
+    {
+      "id": "PED-3006",
+      "cliente": "Miguel Rocha",
+      "produtos": [
+        {
+          "produtoId": "PR-1010",
+          "quantidade": 1,
+          "precoUnitario": 27.9
+        }
+      ],
+      "valorTotal": 27.9,
+      "enderecoId": "END-1006",
+      "entregaId": "DEL-2006",
+      "status": "Cancelado",
+      "dataPedido": "2026-11-08T18:30:00-03:00"
+    },
+    {
+      "id": "PED-3007",
+      "cliente": "Ana Paula Reis",
+      "produtos": [
+        {
+          "produtoId": "PR-1013",
+          "quantidade": 1,
+          "precoUnitario": 48.0
+        },
+        {
+          "produtoId": "PR-1009",
+          "quantidade": 1,
+          "precoUnitario": 9.9
+        }
+      ],
+      "valorTotal": 57.9,
+      "enderecoId": "END-1007",
+      "entregaId": "DEL-2007",
+      "status": "Enviado",
+      "dataPedido": "2026-11-09T21:11:00-03:00"
+    },
+    {
+      "id": "PED-3008",
+      "cliente": "Bruno Azevedo",
+      "produtos": [
+        {
+          "produtoId": "PR-1004",
+          "quantidade": 2,
+          "precoUnitario": 22.9
+        },
+        {
+          "produtoId": "PR-1014",
+          "quantidade": 1,
+          "precoUnitario": 16.9
+        }
+      ],
+      "valorTotal": 62.7,
+      "enderecoId": "END-1008",
+      "entregaId": "DEL-2008",
+      "status": "Confirmado",
+      "dataPedido": "2026-11-09T21:20:00-03:00"
+    },
+    {
+      "id": "PED-3009",
+      "cliente": "Elisa Ramos",
+      "produtos": [
+        {
+          "produtoId": "PR-1015",
+          "quantidade": 1,
+          "precoUnitario": 24.5
+        },
+        {
+          "produtoId": "PR-1006",
+          "quantidade": 1,
+          "precoUnitario": 31.5
+        }
+      ],
+      "valorTotal": 56.0,
+      "enderecoId": "END-1009",
+      "entregaId": "DEL-2009",
+      "status": "Pendente",
+      "dataPedido": "2026-11-09T21:26:00-03:00"
+    },
+    {
+      "id": "PED-3010",
+      "cliente": "Rafael Costa",
+      "produtos": [
+        {
+          "produtoId": "PR-1002",
+          "quantidade": 2,
+          "precoUnitario": 49.9
+        },
+        {
+          "produtoId": "PR-1008",
+          "quantidade": 2,
+          "precoUnitario": 18.5
+        }
+      ],
+      "valorTotal": 136.8,
+      "enderecoId": "END-1010",
+      "entregaId": "DEL-2010",
+      "status": "Entregue",
+      "dataPedido": "2026-11-07T19:20:00-03:00"
+    }
+  ],
+  "enderecos": [
+    {
+      "id": "END-1001",
+      "cliente": "Mariana Lopes",
+      "cep": "13050-246",
+      "rua": "Rua das Laranjeiras",
+      "numero": "128",
+      "complemento": "Casa 2",
+      "bairro": "Jardim Flamboyant",
+      "cidade": "Campinas",
+      "estado": "SP",
+      "referencia": "Próximo à praça do bairro"
+    },
+    {
+      "id": "END-1002",
+      "cliente": "Pedro Almeida",
+      "cep": "22765-432",
+      "rua": "Rua do Bosque Azul",
+      "numero": "42",
+      "complemento": "Apto 32, bloco B",
+      "bairro": "Taquara",
+      "cidade": "Rio de Janeiro",
+      "estado": "RJ",
+      "referencia": "Portaria ao lado da padaria"
+    },
+    {
+      "id": "END-1003",
+      "cliente": "Lia Martins",
+      "cep": "30578-901",
+      "rua": "Alameda Ipê Branco",
+      "numero": "76",
+      "complemento": "Casa",
+      "bairro": "Buritis",
+      "cidade": "Belo Horizonte",
+      "estado": "MG",
+      "referencia": "Muro amarelo"
+    },
+    {
+      "id": "END-1004",
+      "cliente": "Caio Nogueira",
+      "cep": "81567-123",
+      "rua": "Rua das Araucárias",
+      "numero": "510",
+      "complemento": "Apto 14",
+      "bairro": "Cajuru",
+      "cidade": "Curitiba",
+      "estado": "PR",
+      "referencia": "Torre próxima ao portão principal"
+    },
+    {
+      "id": "END-1005",
+      "cliente": "Sofia Martins",
+      "cep": "91589-234",
+      "rua": "Travessa do Sol",
+      "numero": "19",
+      "complemento": "Casa 1",
+      "bairro": "Partenon",
+      "cidade": "Porto Alegre",
+      "estado": "RS",
+      "referencia": "Esquina com a rua das Flores"
+    },
+    {
+      "id": "END-1006",
+      "cliente": "Miguel Rocha",
+      "cep": "51290-345",
+      "rua": "Rua das Palmeiras",
+      "numero": "203",
+      "complemento": "Apto 601",
+      "bairro": "Imbiribeira",
+      "cidade": "Recife",
+      "estado": "PE",
+      "referencia": "Edifício com fachada branca"
+    },
+    {
+      "id": "END-1007",
+      "cliente": "Ana Paula Reis",
+      "cep": "41789-456",
+      "rua": "Avenida das Dunas",
+      "numero": "88",
+      "complemento": "Casa dos fundos",
+      "bairro": "Itapuã",
+      "cidade": "Salvador",
+      "estado": "BA",
+      "referencia": "Entrada pela rua lateral"
+    },
+    {
+      "id": "END-1008",
+      "cliente": "Bruno Azevedo",
+      "cep": "74612-567",
+      "rua": "Rua Cerrado Vivo",
+      "numero": "315",
+      "complemento": "Apto 204",
+      "bairro": "Setor Leste Universitário",
+      "cidade": "Goiânia",
+      "estado": "GO",
+      "referencia": "Ao lado do mercado local"
+    },
+    {
+      "id": "END-1009",
+      "cliente": "Elisa Ramos",
+      "cep": "88054-678",
+      "rua": "Servidão das Gaivotas",
+      "numero": "27",
+      "complemento": "Casa",
+      "bairro": "Ingleses do Rio Vermelho",
+      "cidade": "Florianópolis",
+      "estado": "SC",
+      "referencia": "Portão azul"
+    },
+    {
+      "id": "END-1010",
+      "cliente": "Rafael Costa",
+      "cep": "04123-789",
+      "rua": "Rua do Mirante",
+      "numero": "640",
+      "complemento": "Apto 83, bloco A",
+      "bairro": "Vila Mariana",
+      "cidade": "São Paulo",
+      "estado": "SP",
+      "referencia": "Entrada pela avenida principal"
+    }
+  ],
+  "entregas": [
+    {
+      "id": "DEL-2001",
+      "pedidoId": "PED-3001",
+      "enderecoId": "END-1001",
+      "transportadora": "Motoboy ND Food",
+      "codigoRastreamento": "ND-RAST-20261109-001",
+      "tipoEntrega": "Expressa",
+      "valorFrete": 6.9,
+      "statusEntrega": "Aguardando confirmação",
+      "dataEnvio": null,
+      "previsaoEntrega": "2026-11-09T22:30:00-03:00",
+      "dataEntrega": null
+    },
+    {
+      "id": "DEL-2002",
+      "pedidoId": "PED-3002",
+      "enderecoId": "END-1002",
+      "transportadora": "Rota Sabor",
+      "codigoRastreamento": "ND-RAST-20261109-002",
+      "tipoEntrega": "Padrão",
+      "valorFrete": 4.9,
+      "statusEntrega": "Aguardando coleta",
+      "dataEnvio": null,
+      "previsaoEntrega": "2026-11-09T22:45:00-03:00",
+      "dataEntrega": null
+    },
+    {
+      "id": "DEL-2003",
+      "pedidoId": "PED-3003",
+      "enderecoId": "END-1003",
+      "transportadora": "Flash Moto ND",
+      "codigoRastreamento": "ND-RAST-20261109-003",
+      "tipoEntrega": "Expressa",
+      "valorFrete": 7.9,
+      "statusEntrega": "Preparando pedido",
+      "dataEnvio": null,
+      "previsaoEntrega": "2026-11-09T23:00:00-03:00",
+      "dataEntrega": null
+    },
+    {
+      "id": "DEL-2004",
+      "pedidoId": "PED-3004",
+      "enderecoId": "END-1004",
+      "transportadora": "Rota Sabor",
+      "codigoRastreamento": "ND-RAST-20261109-004",
+      "tipoEntrega": "Padrão",
+      "valorFrete": 5.9,
+      "statusEntrega": "Em trânsito",
+      "dataEnvio": "2026-11-09T21:02:00-03:00",
+      "previsaoEntrega": "2026-11-09T22:20:00-03:00",
+      "dataEntrega": null
+    },
+    {
+      "id": "DEL-2005",
+      "pedidoId": "PED-3005",
+      "enderecoId": "END-1005",
+      "transportadora": "Motoboy ND Food",
+      "codigoRastreamento": "ND-RAST-20261108-005",
+      "tipoEntrega": "Expressa",
+      "valorFrete": 6.9,
+      "statusEntrega": "Entregue",
+      "dataEnvio": "2026-11-08T18:00:00-03:00",
+      "previsaoEntrega": "2026-11-08T19:15:00-03:00",
+      "dataEntrega": "2026-11-08T19:05:00-03:00"
+    },
+    {
+      "id": "DEL-2006",
+      "pedidoId": "PED-3006",
+      "enderecoId": "END-1006",
+      "transportadora": "Rota Sabor",
+      "codigoRastreamento": "ND-RAST-20261108-006",
+      "tipoEntrega": "Padrão",
+      "valorFrete": 4.9,
+      "statusEntrega": "Cancelada",
+      "dataEnvio": null,
+      "previsaoEntrega": null,
+      "dataEntrega": null
+    },
+    {
+      "id": "DEL-2007",
+      "pedidoId": "PED-3007",
+      "enderecoId": "END-1007",
+      "transportadora": "Flash Moto ND",
+      "codigoRastreamento": "ND-RAST-20261109-007",
+      "tipoEntrega": "Expressa",
+      "valorFrete": 8.9,
+      "statusEntrega": "Saiu para entrega",
+      "dataEnvio": "2026-11-09T21:15:00-03:00",
+      "previsaoEntrega": "2026-11-09T22:00:00-03:00",
+      "dataEntrega": null
+    },
+    {
+      "id": "DEL-2008",
+      "pedidoId": "PED-3008",
+      "enderecoId": "END-1008",
+      "transportadora": "Motoboy ND Food",
+      "codigoRastreamento": "ND-RAST-20261109-008",
+      "tipoEntrega": "Agendada",
+      "valorFrete": 9.9,
+      "statusEntrega": "Aguardando coleta",
+      "dataEnvio": null,
+      "previsaoEntrega": "2026-11-09T23:10:00-03:00",
+      "dataEntrega": null
+    },
+    {
+      "id": "DEL-2009",
+      "pedidoId": "PED-3009",
+      "enderecoId": "END-1009",
+      "transportadora": "Rota Sabor",
+      "codigoRastreamento": "ND-RAST-20261109-009",
+      "tipoEntrega": "Padrão",
+      "valorFrete": 5.9,
+      "statusEntrega": "Aguardando confirmação",
+      "dataEnvio": null,
+      "previsaoEntrega": "2026-11-09T23:25:00-03:00",
+      "dataEntrega": null
+    },
+    {
+      "id": "DEL-2010",
+      "pedidoId": "PED-3010",
+      "enderecoId": "END-1010",
+      "transportadora": "Flash Moto ND",
+      "codigoRastreamento": "ND-RAST-20261107-010",
+      "tipoEntrega": "Expressa",
+      "valorFrete": 7.9,
+      "statusEntrega": "Entregue",
+      "dataEnvio": "2026-11-07T20:00:00-03:00",
+      "previsaoEntrega": "2026-11-07T21:10:00-03:00",
+      "dataEntrega": "2026-11-07T20:52:00-03:00"
+    }
+  ]
+}

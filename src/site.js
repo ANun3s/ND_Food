@@ -12,6 +12,7 @@ import './components/FamousRestaurantCarousel.js';
 import './components/BurgerScrollFallback.js';
 import './components/PizzaKitchen.js';
 import './components/SupportChat.js';
+import './components/AdminCrud.js';
 
 if (import.meta.env) import('./main.jsx');
 else import('./components/OfferCouponsFallback.js');

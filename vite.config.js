@@ -105,12 +105,87 @@ function createSupportApi(env) {
   };
 }
 
+function addressFields(components, cep) {
+  const find = (...types) => components.find((component) => types.some((type) => component.types.includes(type)));
+  const state = find('administrative_area_level_1');
+  return {
+    cep: (find('postal_code')?.long_name || cep).replace(/\D/g, ''),
+    logradouro: find('route')?.long_name || '',
+    bairro: find('sublocality_level_1', 'sublocality', 'neighborhood')?.long_name || '',
+    localidade: find('locality', 'postal_town', 'administrative_area_level_2')?.long_name || '',
+    uf: state?.short_name || '',
+  };
+}
+
+async function lookupCepWithGoogle(cep, apiKey) {
+  const url = new URL('https://maps.googleapis.com/maps/api/geocode/json');
+  url.searchParams.set('address', cep + ', Brasil');
+  url.searchParams.set('components', 'country:BR|postal_code:' + cep);
+  url.searchParams.set('language', 'pt-BR');
+  url.searchParams.set('key', apiKey);
+  const response = await fetch(url, { signal: AbortSignal.timeout(9000) });
+  if (!response.ok) throw new Error('Google Geocoding indisponível.');
+  const result = await response.json();
+  if (result.status === 'ZERO_RESULTS') return null;
+  if (result.status !== 'OK' || !result.results?.length) throw new Error('Google Geocoding recusou a consulta.');
+  return addressFields(result.results[0].address_components || [], cep);
+}
+
+async function lookupCepWithViaCep(cep) {
+  const response = await fetch('https://viacep.com.br/ws/' + cep + '/json/', { signal: AbortSignal.timeout(7000) });
+  if (!response.ok) throw new Error('Consulta de CEP indisponível.');
+  const result = await response.json();
+  if (result.erro) return null;
+  return {
+    cep: String(result.cep || cep).replace(/\D/g, ''),
+    logradouro: result.logradouro || '',
+    bairro: result.bairro || '',
+    localidade: result.localidade || '',
+    uf: result.uf || '',
+  };
+}
+
+function createCepLookupApi(env) {
+  const apiKey = env.GOOGLE_MAPS_API_KEY || process.env.GOOGLE_MAPS_API_KEY || '';
+  const handleRequest = async (request, response, next) => {
+    const url = new URL(request.url || '/', 'http://localhost');
+    if (url.pathname !== '/api/cep') return next();
+    if (request.method !== 'GET') return jsonResponse(response, 405, { error: 'Método não permitido.' });
+    const cep = (url.searchParams.get('cep') || '').replace(/\D/g, '');
+    if (!/^\d{8}$/.test(cep)) return jsonResponse(response, 400, { error: 'Informe um CEP com 8 dígitos.' });
+    try {
+      let address = null;
+      let provider = 'viacep';
+      if (apiKey) {
+        address = await lookupCepWithGoogle(cep, apiKey);
+        if (address) provider = 'google';
+      }
+      if (!address || !address.logradouro || !address.bairro || !address.localidade || !address.uf) {
+        const fallback = await lookupCepWithViaCep(cep);
+        if (fallback) {
+          address = { ...fallback, ...Object.fromEntries(Object.entries(address || {}).filter(([, value]) => value)) };
+          if (provider === 'google') provider = 'google+viacep';
+        }
+      }
+      if (!address || (!address.logradouro && !address.localidade)) return jsonResponse(response, 404, { error: 'Não encontrei esse CEP. Confira os números e tente de novo.' });
+      return jsonResponse(response, 200, { ...address, provider });
+    } catch {
+      return jsonResponse(response, 502, { error: 'Não foi possível consultar o CEP agora.' });
+    }
+  };
+  return {
+    name: 'nd-food-cep-lookup',
+    configureServer(server) { server.middlewares.use(handleRequest); },
+    configurePreviewServer(server) { server.middlewares.use(handleRequest); },
+  };
+}
+
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
   return {
     appType: 'spa',
     base: './',
-    plugins: [createSupportApi(env)],
+    plugins: [createCepLookupApi(env), createSupportApi(env)],
     build: {
       target: 'es2022',
     },

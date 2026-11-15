@@ -1,4 +1,5 @@
-import { renderAuthPage } from './src/components/AuthPage.js';
+import { renderAuthPage, renderProfilePage } from './src/components/AuthPage.js';
+import { getCurrentCustomer } from './src/services/customerAccount.js';
 import { getRestaurantMenu } from './src/data/restaurantMenus.js';
 
 const homePage = document.querySelector('main.page:not(.route-page)');
@@ -322,6 +323,10 @@ function getRestaurantCards(restaurantList = restaurants) {
     const image = card.querySelector('.restaurant-photo img');
     setRestaurantImage(image, restaurant);
     image.alt = `Pratos do ${restaurant.name}`;
+    image.loading = 'lazy';
+    image.decoding = 'async';
+    image.width = 900;
+    image.height = 600;
     const mark = card.querySelector('.restaurant-mark');
     mark.textContent = restaurant.mark;
     card.querySelector('.restaurant-main h3').textContent = restaurant.name;
@@ -354,7 +359,7 @@ function getFeaturedRestaurantCards(category = 'Todos') {
   return featured.map((restaurant, index) => {
     const category = restaurant.category;
     return `<article class="famous-stack__card" data-restaurant="${restaurant.id}" data-category="${category}" data-search="${`${restaurant.name} ${category}`.toLocaleLowerCase('pt-BR')}" aria-roledescription="restaurante">
-      <img class="famous-stack__image" data-restaurant-image="${restaurant.id}" src="${getRestaurantImageSources(restaurant)[0]}" alt="Pratos do ${restaurant.name}" />
+      <img class="famous-stack__image" data-restaurant-image="${restaurant.id}" src="${getRestaurantImageSources(restaurant)[0]}" alt="Pratos do ${restaurant.name}" loading="lazy" decoding="async" width="1200" height="750" />
       <div class="famous-stack__shade"></div>
       <span class="famous-stack__position">${String(index + 1).padStart(2, '0')} / ${String(featured.length).padStart(2, '0')}</span>
       <div class="famous-stack__content"><p class="famous-stack__eyebrow">ESCOLHA DA ND FOOD</p><h3>${restaurant.name}</h3><p>${category}</p><a href="#/restaurante/${restaurant.id}" aria-label="Ver cardápio do ${restaurant.name}">Ver cardápio <span aria-hidden="true">→</span></a></div>
@@ -595,7 +600,7 @@ function renderCartPage() {
     const quantity = Number(item.quantity) || 0;
     const name = escapeHTML(item.name);
     return `<article class="cart-row cart-page-item">
-      <img src="${escapeHTML(item.image)}" alt="" loading="lazy" />
+      <img src="${escapeHTML(item.image)}" alt="" loading="lazy" decoding="async" width="900" height="600" />
       <div class="cart-row-copy">
         <h2>${name}</h2>
         ${item.restaurant ? `<p>${escapeHTML(item.restaurant)}</p>` : ''}
@@ -663,13 +668,13 @@ function renderReviewPage() {
 }
 
 function renderDishCard(restaurant, product, favoriteKey = `product:${restaurant.id}:${slug(product.name)}`) {
-  return `<article class="food-card" data-restaurant-name="${escapeHTML(restaurant.name)}"><div class="food-photo"><img src="${escapeHTML(product.image)}" alt="${escapeHTML(product.name)}" loading="lazy" /><span class="badge">${escapeHTML(product.badge || 'MAIS PEDIDO')}</span><button class="favorite" type="button" data-favorite-key="${escapeHTML(favoriteKey)}" aria-label="Favoritar ${escapeHTML(product.name)}" aria-pressed="false">♡</button></div><div class="food-info"><p class="restaurant-name">${escapeHTML(restaurant.name)}</p><h3>${escapeHTML(product.name)}</h3><p class="food-description">${escapeHTML(product.description || 'Preparado na hora com ingredientes selecionados.')}</p><div class="price-row"><div>${product.oldPrice ? `<del>R$ ${formatPrice(product.oldPrice)}</del>` : ''}<strong>R$ ${formatPrice(product.price)}</strong></div><button class="add-button" type="button" data-add="${escapeHTML(product.name)}" data-product-key="${escapeHTML(favoriteKey)}" data-product-price="${Number(product.price)}" aria-label="Adicionar ${escapeHTML(product.name)} à sacola">+</button></div></div></article>`;
+  return `<article class="food-card" data-restaurant-name="${escapeHTML(restaurant.name)}"><div class="food-photo"><img src="${escapeHTML(product.image)}" alt="${escapeHTML(product.name)}" loading="lazy" decoding="async" width="900" height="600" /><span class="badge">${escapeHTML(product.badge || 'MAIS PEDIDO')}</span><button class="favorite" type="button" data-favorite-key="${escapeHTML(favoriteKey)}" aria-label="Favoritar ${escapeHTML(product.name)}" aria-pressed="false">♡</button></div><div class="food-info"><p class="restaurant-name">${escapeHTML(restaurant.name)}</p><h3>${escapeHTML(product.name)}</h3><p class="food-description">${escapeHTML(product.description || 'Preparado na hora com ingredientes selecionados.')}</p><div class="price-row"><div>${product.oldPrice ? `<del>R$ ${formatPrice(product.oldPrice)}</del>` : ''}<strong>R$ ${formatPrice(product.price)}</strong></div><button class="add-button" type="button" data-add="${escapeHTML(product.name)}" data-product-key="${escapeHTML(favoriteKey)}" data-product-price="${Number(product.price)}" aria-label="Adicionar ${escapeHTML(product.name)} à sacola">+</button></div></div></article>`;
 }
 
 function renderFavoriteSnapshotCard(key) {
   const saved = favoriteDetails.get(key);
   if (!saved || saved.type !== 'product') return '';
-  return `<article class="food-card" data-restaurant-name="${escapeHTML(saved.restaurantName || '')}"><div class="food-photo"><img src="${escapeHTML(saved.image || '')}" alt="${escapeHTML(saved.name)}" loading="lazy" /><span class="badge">${escapeHTML(saved.badge || 'MAIS PEDIDO')}</span><button class="favorite" type="button" data-favorite-key="${escapeHTML(key)}" aria-label="Remover ${escapeHTML(saved.name)} dos favoritos" aria-pressed="true">♥</button></div><div class="food-info"><p class="restaurant-name">${escapeHTML(saved.restaurantName || 'ND Food')}</p><h3>${escapeHTML(saved.name)}</h3><p class="food-description">${escapeHTML(saved.description || 'Preparado na hora com ingredientes selecionados.')}</p><div class="price-row"><div>${saved.oldPrice ? `<del>R$ ${escapeHTML(saved.oldPrice)}</del>` : ''}<strong>R$ ${escapeHTML(saved.price || '0,00')}</strong></div><button class="add-button" type="button" data-add="${escapeHTML(saved.name)}" data-product-key="${escapeHTML(key)}" data-product-price="${Number(saved.priceValue || 0)}" aria-label="Adicionar ${escapeHTML(saved.name)} à sacola">+</button></div></div></article>`;
+  return `<article class="food-card" data-restaurant-name="${escapeHTML(saved.restaurantName || '')}"><div class="food-photo"><img src="${escapeHTML(saved.image || '')}" alt="${escapeHTML(saved.name)}" loading="lazy" decoding="async" width="900" height="600" /><span class="badge">${escapeHTML(saved.badge || 'MAIS PEDIDO')}</span><button class="favorite" type="button" data-favorite-key="${escapeHTML(key)}" aria-label="Remover ${escapeHTML(saved.name)} dos favoritos" aria-pressed="true">♥</button></div><div class="food-info"><p class="restaurant-name">${escapeHTML(saved.restaurantName || 'ND Food')}</p><h3>${escapeHTML(saved.name)}</h3><p class="food-description">${escapeHTML(saved.description || 'Preparado na hora com ingredientes selecionados.')}</p><div class="price-row"><div>${saved.oldPrice ? `<del>R$ ${escapeHTML(saved.oldPrice)}</del>` : ''}<strong>R$ ${escapeHTML(saved.price || '0,00')}</strong></div><button class="add-button" type="button" data-add="${escapeHTML(saved.name)}" data-product-key="${escapeHTML(key)}" data-product-price="${Number(saved.priceValue || 0)}" aria-label="Adicionar ${escapeHTML(saved.name)} à sacola">+</button></div></div></article>`;
 }
 
 function renderFavoritesPage() {
@@ -688,7 +693,7 @@ function renderRestaurantDetail(id) {
   const products = getRestaurantMenu(restaurant);
   const productCardsHTML = products.map((product) => renderDishCard(restaurant, product)).join('');
   return `<a class="back-link" href="#/restaurantes">← Voltar para restaurantes</a>
-    <section class="detail-hero"><div class="detail-cover"><img data-restaurant-image="${restaurant.id}" src="${escapeHTML(cover)}" alt="Pratos do ${escapeHTML(restaurant.name)}" /><span class="detail-open">ABERTO AGORA</span></div><div class="detail-info"><p class="eyebrow">UMA IDEIA PARA SEU PRÓXIMO SABOR</p><h1>${escapeHTML(restaurant.name)}</h1><p class="detail-summary">${escapeHTML(restaurant.category)} preparados com ingredientes frescos e muito sabor.</p><div class="detail-stats"><span class="rating">★ ${restaurant.rating} · ${escapeHTML(restaurant.reviews)}</span><span>Entrega em ${restaurant.minutes}–${restaurant.minutes + 10} min</span></div><span class="detail-tag">${restaurant.free ? 'ENTREGA GRÁTIS' : `FRETE R$ ${formatPrice(restaurant.deliveryFee ?? 5.9)}`}</span></div></section>
+    <section class="detail-hero"><div class="detail-cover"><img data-restaurant-image="${restaurant.id}" src="${escapeHTML(cover)}" alt="Pratos do ${escapeHTML(restaurant.name)}" width="1200" height="750" /><span class="detail-open">ABERTO AGORA</span></div><div class="detail-info"><p class="eyebrow">UMA IDEIA PARA SEU PRÓXIMO SABOR</p><h1>${escapeHTML(restaurant.name)}</h1><p class="detail-summary">${escapeHTML(restaurant.category)} preparados com ingredientes frescos e muito sabor.</p><div class="detail-stats"><span class="rating">★ ${restaurant.rating} · ${escapeHTML(restaurant.reviews)}</span><span>Entrega em ${restaurant.minutes}–${restaurant.minutes + 10} min</span></div><span class="detail-tag">${restaurant.free ? 'ENTREGA GRÁTIS' : `FRETE R$ ${formatPrice(restaurant.deliveryFee ?? 5.9)}`}</span></div></section>
     <section class="detail-menu-section"><div class="section-heading"><div><h2>Cardápio · ${escapeHTML(restaurant.name)}</h2><p>Escolha seus favoritos, preparados na hora.</p></div><a class="favorites-shortcut" href="#/favoritos">♡ Seus favoritos <span data-favorite-count>${favorites.size}</span></a></div><div class="food-grid detail-menu-grid">${productCardsHTML}</div></section>
     <div class="detail-cart-bar"><span>Seu próximo prato favorito está a um toque.</span><a class="button button-primary" href="#/sacola">Ver sacola <span>→</span></a></div>`;
 }
@@ -709,9 +714,17 @@ function renderRoute() {
   reviewTopographyFallbackCleanup();
   window.dispatchEvent(new Event('nuvora:before-route-render'));
   const route = getRoute();
-  const home = route.name === 'inicio' || !['restaurantes', 'ofertas', 'pedidos', 'avaliacoes', 'sacola', 'revisao', 'favoritos', 'restaurante', 'entrar'].includes(route.name);
+  if (route.name === 'perfil' && !getCurrentCustomer()) {
+    location.hash = '#/entrar';
+    return;
+  }
+  const isAdmin = route.name === 'admin';
+  const home = route.name === 'inicio' || !['restaurantes', 'ofertas', 'pedidos', 'avaliacoes', 'sacola', 'revisao', 'favoritos', 'restaurante', 'entrar', 'perfil', 'admin'].includes(route.name);
+  const siteHeader = document.querySelector('.site-header');
   const siteFooter = document.querySelector('.site-footer');
-  if (siteFooter) siteFooter.hidden = route.name === 'entrar';
+  document.body.classList.toggle('nd-admin-mode', isAdmin);
+  if (siteHeader) siteHeader.hidden = isAdmin;
+  if (siteFooter) siteFooter.hidden = route.name === 'entrar' || isAdmin;
   homePage.hidden = !home;
   routeScreen.hidden = home;
   document.querySelector('.skip-link').setAttribute('href', home ? '#inicio' : '#route-screen');
@@ -737,6 +750,12 @@ function renderRoute() {
   } else if (route.name === 'entrar') {
     routeScreen.innerHTML = renderAuthPage();
     document.title = 'Entrar ou criar conta — ND Food';
+  } else if (route.name === 'perfil') {
+    routeScreen.innerHTML = renderProfilePage();
+    document.title = 'Seu perfil — ND Food';
+  } else if (isAdmin) {
+    routeScreen.innerHTML = '<div id="nd-admin-root"></div>';
+    document.title = 'Painel de gestão — ND Food';
   } else if (route.name === 'avaliacoes') {
     routeScreen.innerHTML = renderReviewsPage();
     document.title = 'Avaliações — ND Food';
@@ -1020,8 +1039,11 @@ document.addEventListener('click', async (event) => {
     }
     const items = [...cart.values()].map((item) => ({ name: item.name, restaurant: item.restaurant || '', price: item.price, quantity: item.quantity }));
     const totals = getCartTotals(items);
+    const customer = getCurrentCustomer();
     const order = {
       id: `ND-${String(Date.now()).slice(-7)}`,
+      customerId: customer?.id || null,
+      customer: customer ? { id: customer.id, name: customer.name, email: customer.email, cpf: customer.cpf || '' } : null,
       createdAt: new Date().toISOString(),
       items,
       subtotal: totals.subtotal,

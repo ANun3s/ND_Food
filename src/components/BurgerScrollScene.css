@@ -100,7 +100,7 @@
 }
 
 .burger-scene-counter b {
-  color: #a49a91;
+  color: #71675c;
   font-weight: 600;
 }
 
@@ -276,5 +276,64 @@
   .burger-scene-cue,
   .burger-scene-progress {
     display: none;
+  }
+}
+
+/* Compact mobile layout: keep the copy and primary action ahead of the 3D scene. */
+@media (max-width: 820px) and (min-height: 561px) {
+  .burger-story:not(.burger-story--static) {
+    height: calc(100svh + 100px);
+    min-height: 0;
+  }
+
+  .burger-story:not(.burger-story--static) > .hero,
+  .burger-story.burger-story--static > .hero {
+    top: 10px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto clamp(280px, 76vw, 320px);
+    height: auto;
+    min-height: 0;
+  }
+
+  .burger-story .hero-copy {
+    grid-row: 1;
+    min-height: 0;
+    padding: 30px 24px 24px;
+  }
+
+  .burger-story .hero-image {
+    grid-row: 2;
+    height: clamp(280px, 76vw, 320px);
+    min-height: 280px;
+    max-height: 320px;
+  }
+}
+
+@media (max-width: 420px) and (min-height: 561px) {
+  .burger-story .hero-copy {
+    padding: 28px 21px 22px;
+  }
+
+  .burger-story:not(.burger-story--static) > .hero,
+  .burger-story.burger-story--static > .hero {
+    grid-template-rows: auto 280px;
+  }
+
+  .burger-story .hero-image {
+    height: 280px;
+    min-height: 280px;
+  }
+}
+
+@media (max-width: 820px) and (prefers-reduced-motion: reduce) {
+  .burger-story:not(.burger-story--static) {
+    height: auto;
+    min-height: 0;
+  }
+
+  .burger-story:not(.burger-story--static) > .hero {
+    position: relative;
+    top: auto;
   }
 }

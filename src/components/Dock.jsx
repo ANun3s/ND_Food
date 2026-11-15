@@ -13,6 +13,7 @@ import {
   ShoppingBag03Icon,
 } from '@hugeicons/core-free-icons';
 import './Dock.css';
+import { getCurrentCustomer } from '../services/customerAccount.js';
 
 const glyph = (icon) => <HugeiconsIcon icon={icon} size="1em" strokeWidth={1.8} />;
 const ROUTES = [
@@ -167,6 +168,7 @@ export default function Dock({
   const wakeRef = useRef(null);
   const closeMenuRef = useRef(null);
   const [theme, setTheme] = useState(() => document.documentElement.dataset.theme || 'light');
+  const [customer, setCustomer] = useState(getCurrentCustomer);
   useEffect(() => {
     const sync = () => setTheme(document.documentElement.dataset.theme);
     window.addEventListener('nuvora:theme-change', sync);
@@ -213,7 +215,7 @@ export default function Dock({
     { id: 'tema', label: theme === 'dark' ? 'Ativar tema claro' : 'Ativar tema escuro', className: 'theme-toggle', glyph: (<span className="theme-glyph"><svg className="theme-glyph__sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg><svg className="theme-glyph__moon" viewBox="0 0 24 24"><path d="M20.5 14.2A8.7 8.7 0 0 1 9.8 3.5a8.7 8.7 0 1 0 10.7 10.7Z"/></svg></span>), themeToggle: true },
     { id: 'buscar', label: 'Buscar', icon: Search01Icon, onClick: toggleSearch, className: 'dock-search-toggle' },
     { id: 'endereco', label: 'Endereço', icon: Location01Icon, className: 'location-button', onClick: () => {} },
-    { id: 'entrar', label: 'Entrar', icon: UserCircleIcon, className: 'login-button', onClick: () => navigate('#/entrar') },
+    { id: customer ? 'perfil' : 'entrar', label: customer ? 'Perfil' : 'Entrar', icon: UserCircleIcon, className: 'login-button', onClick: () => navigate(customer ? '#/perfil' : '#/entrar') },
     { separator: true },
     { id: 'sacola', label: 'Sacola', icon: ShoppingBag03Icon, href: '#/sacola', badge: cartCount || undefined, className: 'cart-button', onClick: () => navigate('#/sacola') },
   ];
@@ -223,11 +225,19 @@ export default function Dock({
   useEffect(() => {
     const onHashChange = () => setActive(readActiveRoute());
     const onCartChange = (event) => setCartCount(event.detail?.count ?? 0);
+    const onSessionChange = (event) => setCustomer(event.detail?.customer ?? getCurrentCustomer());
+    const onStorageChange = (event) => {
+      if (!event.key || event.key.startsWith('ndfood-demo-')) setCustomer(getCurrentCustomer());
+    };
     window.addEventListener('hashchange', onHashChange);
     window.addEventListener('nuvora:cart-change', onCartChange);
+    window.addEventListener('ndfood:session', onSessionChange);
+    window.addEventListener('storage', onStorageChange);
     return () => {
       window.removeEventListener('hashchange', onHashChange);
       window.removeEventListener('nuvora:cart-change', onCartChange);
+      window.removeEventListener('ndfood:session', onSessionChange);
+      window.removeEventListener('storage', onStorageChange);
     };
   }, []);
 
