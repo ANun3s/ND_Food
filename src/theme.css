@@ -31,7 +31,7 @@
 :root[data-theme="dark"] .theme-glyph__moon { opacity: 1; transform: rotate(0) scale(1); }
 :root[data-theme="dark"] ::selection { background: #81433e; color: #fff; }
 :root[data-theme="dark"] :is(button, a, select):focus-visible { outline-color: var(--focus); }
-:root[data-theme="dark"] .site-header { background: transparent; }
+:root[data-theme="dark"] .site-header { background: color-mix(in srgb, var(--page) 94%, transparent); }
 :root[data-theme="dark"] :is(.dock-panel, .dock-context-menu, .dock-submenu) {
   --dock-panel: #242427f0;
   --dock-panel-edge: #ffffff20;
